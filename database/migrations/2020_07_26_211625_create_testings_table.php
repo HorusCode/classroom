@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppModelsTestingsTable extends Migration
+class CreateTestingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,15 @@ class CreateAppModelsTestingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_models_testings', function (Blueprint $table) {
+        Schema::create('testings', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('time', 8)->default('00:00:00');
+            $table->unsignedBigInteger('creator_id')->index();
+
+            $table->foreign('creator_id')->references('id')
+                ->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
