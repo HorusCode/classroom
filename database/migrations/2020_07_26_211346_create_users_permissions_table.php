@@ -20,7 +20,7 @@ class CreateUsersPermissionsTable extends Migration
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade');
             $table->foreign('permission_id')->references('id')
-                ->on('permission')->onDelete('cascade');
+                ->on('permissions')->onDelete('cascade');
 
             $table->primary(['user_id','permission_id']);
 
