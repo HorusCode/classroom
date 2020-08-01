@@ -24,7 +24,7 @@ class CreateUsersPermissionsTable extends Migration
 
             $table->primary(['user_id','permission_id']);
 
-            $table->timestamps();
+
         });
     }
 

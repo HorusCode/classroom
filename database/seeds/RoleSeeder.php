@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -11,6 +12,20 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        //
+
+        $data = [
+            [
+                'name' => 'Teacher',
+                'slug' => 'teacher'
+            ],
+            [
+                'name' => 'Student',
+                'slug' => 'student'
+            ]
+        ];
+
+        foreach ($data as $datum) {
+            Role::create($datum);
+        }
     }
 }
