@@ -14,13 +14,13 @@ class GroupSeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Б-1-13',
+                'group' => 'Б-1-13',
             ],
             [
-                'name' => 'ИС-12',
+                'group' => 'ИС-12',
             ],
             [
-                'name' => 'М-13',
+                'group' => 'М-13',
             ]
         ];
 
