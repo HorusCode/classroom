@@ -1,0 +1,17 @@
+.header {
+  height: 64px;
+  display: flex;
+  max-width: 100%;
+  grid-area: h;
+  padding: 0 $margin-gap;
+  align-items: center;
+
+  border-radius: 0;
+  &__items {
+    display: flex;
+  }
+  &__item {
+    &:first-child > .btn {margin-left: 0}
+    &:last-child  > .btn {margin-right: 0}
+  }
+}

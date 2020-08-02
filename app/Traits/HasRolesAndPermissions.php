@@ -24,7 +24,7 @@ trait HasRolesAndPermissions
         foreach ($roles as $role) {
             if ($this->roles->contains('slug', $role)) {
                 return true;
-            };
+            }
         }
         return false;
     }
