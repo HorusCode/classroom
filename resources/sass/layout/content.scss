@@ -2,13 +2,13 @@
   display: grid;
   grid-area: c;
 
-  margin: 0 $margin-gap;
+  margin: 0 10px;
   grid-template-rows: 5rem 1fr;
   &__header {
-    padding: $content-padding;
+    padding: 20px;
     align-self: center;
   }
   &__body {
-    padding: $content-padding;
+    padding: 20px;
   }
 }

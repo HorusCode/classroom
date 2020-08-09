@@ -125,21 +125,21 @@
 }
 
 
-@function bulmaRgba($color, $alpha) {
+@function sarumaRgba($color, $alpha) {
   @if type-of($color) != 'color' {
     @return $color;
   }
   @return rgba($color, $alpha);
 }
 
-@function bulmaDarken($color, $amount) {
+@function sarumaDarken($color, $amount) {
   @if type-of($color) != 'color' {
     @return $color;
   }
   @return darken($color, $amount);
 }
 
-@function bulmaLighten($color, $amount) {
+@function sarumaLighten($color, $amount) {
   @if type-of($color) != 'color' {
     @return $color;
   }

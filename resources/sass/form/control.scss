@@ -1,0 +1,85 @@
+.s-control {
+    box-sizing: border-box;
+    clear: both;
+    font-size: $size-normal;
+    position: relative;
+    text-align: inherit;
+    // Modifiers
+    &.s-with-icons-left,
+    &.s-with-icons-right {
+        .s-input,
+        .s-select {
+            &:focus {
+                & ~ .s-icon {
+                    color: $input-icon-active-color;
+                }
+            }
+
+            &.s-small ~ .s-icon {
+                font-size: $size-small;
+            }
+
+            &.s-medium ~ .s-icon {
+                font-size: $size-medium;
+            }
+
+            &.s-large ~ .s-icon {
+                font-size: $size-large;
+            }
+
+            .s-icon {
+                color: $input-icon-color;
+                height: $input-height;
+                pointer-events: none;
+                position: absolute;
+                top: 0;
+                width: $input-height;
+                z-index: 4;
+            }
+        }
+    }
+
+    &.s-with-icons-left {
+        .s-input,
+        .s-select select {
+            padding-left: $input-height;
+        }
+
+        .s-icon.s-left {
+            left: 0;
+        }
+    }
+
+    &.s-with-icons-right {
+        .s-input,
+        .s-select select {
+            padding-right: $input-height;
+        }
+
+        .s-icon.s-right {
+            right: 0;
+        }
+    }
+
+    &.s-loading {
+        &::after {
+            @extend %loader;
+            position: absolute !important;
+            @include ltr-position(0.625em);
+            top: 0.625em;
+            z-index: 4;
+        }
+
+        &.s-small:after {
+            font-size: $size-small;
+        }
+
+        &.s-medium:after {
+            font-size: $size-medium;
+        }
+
+        &.s-large:after {
+            font-size: $size-large;
+        }
+    }
+}

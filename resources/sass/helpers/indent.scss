@@ -1,0 +1,38 @@
+$indent-shortcuts: ("margin": "s-mg", "padding": "s-pa") !default;
+$indent-directions: ("top": "t", "right": "r", "bottom": "b", "left": "l") !default;
+$indent-x: "x" !default;
+$indent-y: "y" !default;
+$indent-values: ("0": 0, "1": 0.25rem, "2": 0.5rem, "3": 0.75rem, "4": 1rem, "5": 1.5rem, "6": 3rem) !default;
+
+.mg-auto-x {
+    margin: 0 auto;
+}
+
+
+@each $property, $shortcut in $indent-shortcuts {
+    @each $name, $value in $indent-values {
+        // Cardinal directions
+
+        @each $direction, $suffix in $indent-directions {
+            .#{$shortcut}#{$suffix}-#{$name} {
+                #{$property}-#{$direction}: $value !important;
+            }
+        }
+
+        // Horizontal axis
+        @if $indent-x != null {
+            .#{$shortcut}#{$indent-x}-#{$name} {
+                #{$property}-left: $value !important;
+                #{$property}-right: $value !important;
+            }
+        }
+
+        // Vertical axis
+        @if $indent-y != null {
+            .#{$shortcut}#{$indent-y}-#{$name} {
+                #{$property}-top: $value !important;
+                #{$property}-bottom: $value !important;
+            }
+        }
+    }
+}

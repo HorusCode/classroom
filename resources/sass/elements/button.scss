@@ -1,0 +1,475 @@
+$button-color: $text-strong !default;
+$button-background-color: $scheme-main !default;
+$button-family: false !default;
+
+$button-border-color: $border !default;
+$button-border-width: $control-border-width !default;
+
+$button-padding-y: calc(0.5em - #{$button-border-width}) !default;
+$button-padding-x: 1em !default;
+
+$button-hover-color: $link-hover !default;
+$button-hover-border-color: $link-hover-border !default;
+
+$button-focus-color: $link-focus !default;
+$button-focus-border-color: $link-focus-border !default;
+$button-focus-box-shadow-size: 0 0 0 0.125em !default;
+$button-focus-box-shadow-color: sarumaRgba($link, 0.25) !default;
+
+$button-active-color: $link-active !default;
+$button-active-border-color: $link-active-border !default;
+
+$button-active-color: $link-active !default;
+$button-active-border-color: $link-active-border !default;
+
+$button-text-color: $text !default;
+$button-text-decoration: underline !default;
+$button-text-hover-background-color: $background !default;
+$button-text-hover-color: $text-strong !default;
+
+$button-disabled-background-color: $scheme-main !default;
+$button-disabled-border-color: $border !default;
+$button-disabled-shadow: none !default;
+$button-disabled-opacity: 0.5 !default;
+
+$button-static-color: $text-light !default;
+$button-static-background-color: $scheme-main-ter !default;
+$button-static-border-color: $border !default;
+
+@mixin btn-small {
+    border-radius: $radius-small;
+    font-size: $size-small;
+}
+
+@mixin btn-normal {
+    font-size: $size-normal;
+}
+
+@mixin btn-medium {
+    font-size: $size-medium;
+}
+
+@mixin btn-large {
+    font-size: $size-large;
+}
+
+
+.s-btn { // Default button
+    @extend %control;
+    @extend %unselectable;
+    background-color: $button-background-color;
+    border-color: $button-border-color;
+    border-width: $button-border-width;
+    color: $button-color;
+    cursor: pointer;
+    display: flex;
+    @if $button-family {
+        font-family: $button-family;
+    }
+    justify-content: center;
+    padding: $button-padding-y $button-padding-y;
+    text-align: center;
+    white-space: nowrap;
+
+    strong {
+        color: inherit;
+    }
+
+    .s-icon {
+        &, &.s-small, &.s-medium, &.s-large {
+            height: 1.5em;
+            width: 1.5em;
+        }
+
+        &:first-child:not(:last-child) {
+            @include ltr-property("margin", calc(#{-1 / 2 * $button-padding-x} - #{$button-border-width}), false);
+            @include ltr-property("margin", $button-padding-x / 4);
+        }
+
+        &:last-child:not(:first-child) {
+            @include ltr-property("margin", $button-padding-x / 4, false);
+            @include ltr-property("margin", calc(#{-1 / 2 * $button-padding-x} - #{$button-border-width}));
+        }
+
+        &:first-child:last-child {
+            margin-left: calc(#{-1 / 2 * $button-padding-x} - #{$button-border-width});
+            margin-right: calc(#{-1 / 2 * $button-padding-x} - #{$button-border-width});
+        }
+
+
+    }
+    // States
+    &:hover,
+    &.s-hovered {
+        border-color: $button-hover-border-color;
+        color: $button-hover-color;
+    }
+
+    &:focus,
+    &.s-focused {
+        border-color: $button-focus-border-color;
+        color: $button-focus-color;
+    }
+
+
+
+    &:active,
+    &.s-active {
+        border-color: $button-active-border-color;
+        color: $button-active-color;
+        box-shadow: $button-focus-box-shadow-size $button-focus-box-shadow-color;
+    }
+
+    &#{&}--text {
+        background-color: transparent;
+        border-color: transparent;
+        color: $button-text-color;
+        text-decoration: $button-text-decoration;
+
+        &:hover,
+        &.s-hovered,
+        &:focus,
+        &.s-focused {
+            background-color: $button-text-hover-background-color;
+            color: $button-text-hover-color;
+        }
+
+        &:active,
+        &.s-active {
+            background-color: sarumaDarken($button-text-hover-background-color, 5%);
+            color: $button-text-hover-color;
+        }
+
+        &[disabled],
+        fieldset[disabled] & {
+            background-color: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
+    }
+
+    // Colors
+
+    @each $name, $pair in $colors {
+        $color: nth($pair, 1);
+        $color-invert: nth($pair, 2);
+        /* Example .s-btn.s-btn--primary etc. */
+        &#{&}--#{$name} {
+            background-color: $color;
+            border-color: transparent;
+            color: $color-invert;
+
+            &:hover,
+            &.s-hovered {
+                background-color: sarumaDarken($color, 2.5%);
+                border-color: transparent;
+                color: $color-invert;
+            }
+
+            &:focus,
+            &.s-focused {
+                border-color: transparent;
+                color: $color-invert;
+
+                &:not(:active) {
+                    box-shadow: $button-focus-box-shadow-size sarumaRgba($color, 0.25);
+                }
+            }
+
+            &:active,
+            &.s-active {
+                background-color: sarumaDarken($color, 5%);
+                border-color: transparent;
+                color: $color-invert;
+            }
+
+            &[disabled],
+            fieldset[disabled] & {
+                background-color: $color;
+                border-color: transparent;
+                box-shadow: none;
+            }
+            /*Inverted color*/
+            &.s-inverted:not(.s-outlined) {
+                background-color: $color-invert;
+                color: $color;
+
+                &:hover,
+                &.s-hovered {
+                    background-color: sarumaDarken($color-invert, 5%);
+                }
+
+                &[disabled],
+                fieldset[disabled] & {
+                    background-color: $color-invert;
+                    border-color: transparent;
+                    box-shadow: none;
+                    color: $color;
+                }
+            }
+
+            &.s-loading {
+                &::after {
+                    border-color: transparent transparent $color-invert $color-invert !important;
+                }
+            }
+
+
+            // Outline button
+            &.s-outlined {
+                background-color: transparent;
+                border-color: $color;
+                color: $color;
+
+                &:hover,
+                &.s-hovered,
+                &:focus,
+                &.s-focused {
+                    background-color: $color;
+                    border-color: $color;
+                    color: $color-invert;
+                }
+
+                &.s-loading {
+                    &::after {
+                        border-color: transparent transparent $color $color !important;
+                    }
+
+                    &:hover,
+                    &.s-hovered,
+                    &:focus,
+                    &.s-focused {
+                        &::after {
+                            border-color: transparent transparent $color-invert $color-invert !important;
+                        }
+                    }
+                }
+
+                &[disabled],
+                fieldset[disabled] & {
+                    background-color: transparent;
+                    border-color: $color;
+                    box-shadow: none;
+                    color: $color;
+                }
+            }
+
+            &.s-inverted.s-outlined {
+                background-color: transparent;
+                border-color: $color-invert;
+                color: $color-invert;
+
+                &:hover,
+                &.s-hovered,
+                &:focus,
+                &.s-focused {
+                    background-color: $color-invert;
+                    color: $color;
+                }
+
+                &.s-loading {
+                    &:hover,
+                    &.s-hovered,
+                    &:focus,
+                    &.s-focused {
+                        &::after {
+                            border-color: transparent transparent $color $color !important;
+                        }
+                    }
+                }
+
+                &[disabled],
+                fieldset[disabled] & {
+                    background-color: transparent;
+                    border-color: $color-invert;
+                    box-shadow: none;
+                    color: $color-invert;
+                }
+            }
+
+            // If light and dark colors are provided
+            @if length($pair) >= 4 {
+                $color-light: nth($pair, 3);
+                $color-dark: nth($pair, 4);
+                &.s-light {
+                    background-color: $color-light;
+                    color: $color-dark;
+
+                    &:hover,
+                    &.s-hovered {
+                        background-color: sarumaDarken($color-light, 2.5%);
+                        border-color: transparent;
+                        color: $color-dark;
+                    }
+
+                    &:active,
+                    &.s-active {
+                        background-color: sarumaDarken($color-light, 5%);
+                        border-color: transparent;
+                        color: $color-dark;
+                    }
+                }
+            }
+        }
+    }
+    // Sizes
+    &.s-small {
+        @include btn-small;
+    }
+
+    &.s-normal {
+        @include btn-normal;
+    }
+
+    &.s-medium {
+        @include btn-medium;
+    }
+
+    &.s-large {
+        @include btn-large;
+    }
+
+    // Modifiers
+    &[disabled],
+    fieldset[disabled] & {
+        background-color: $button-disabled-background-color;
+        border-color: $button-disabled-border-color;
+        box-shadow: $button-disabled-shadow;
+        opacity: $button-disabled-opacity;
+    }
+
+    &.s-fullwidth {
+        display: flex;
+        width: 100%;
+    }
+
+    &.s-loading {
+        color: transparent !important;
+        pointer-events: none;
+
+        &::after {
+            @extend %loader;
+            @include center(1em);
+            position: absolute !important;
+        }
+    }
+
+    &.s-static {
+        background-color: $button-static-background-color;
+        border-color: $button-static-border-color;
+        color: $button-static-color;
+        box-shadow: none;
+        pointer-events: none;
+    }
+
+    &.s-rounded {
+        border-radius: $radius-rounded;
+        padding-left: calc(#{$button-padding-x} + 0.25em);
+        padding-right: calc(#{$button-padding-x} + 0.25em);
+    }
+}
+
+.s-btn-group {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .s-btn {
+        margin-bottom: 0.5rem;
+
+        &:not(:last-child):not(.s-fullwidth) {
+            @include ltr-property("margin", 0.5rem);
+        }
+    }
+
+    &:last-child {
+        margin-bottom: -0.5rem;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    // Sizes
+    &.s-small {
+        .s-btn:not(.s-normal):not(.s-medium):not(.s-large) {
+            @include btn-small;
+        }
+    }
+
+    &.s-medium {
+        .s-btn:not(.s-small):not(.s-normal):not(.s-large) {
+            @include btn-medium;
+        }
+    }
+
+    &.s-large {
+        .s-btn:not(.s-small):not(.s-normal):not(.s-medium) {
+            @include btn-large;
+        }
+    }
+
+    &.with-addons {
+        .s-btn {
+            &:not(:first-child) {
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+            }
+
+            &:not(:last-child) {
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+                @include ltr-property("margin", - 1 px);
+            }
+
+            &:last-child {
+                @include ltr-property("margin", 0);
+            }
+
+            &:hover,
+            &.s-hovered {
+                z-index: 2;
+            }
+
+            &:focus,
+            &.s-focused,
+            &:active,
+            &.s-active,
+            &.s-selected {
+                z-index: 3;
+
+                &:hover {
+                    z-index: 4;
+                }
+            }
+
+            &.s-expanded {
+                flex-grow: 1;
+                flex-shrink: 1;
+            }
+        }
+    }
+
+    &.s-centered {
+        justify-content: center;
+
+        &:not(.with-addons) {
+            .s-btn:not(.s-fullwidth) {
+                margin-left: 0.25rem;
+                margin-right: 0.25rem;
+            }
+        }
+    }
+
+    &.s-right {
+        justify-content: flex-end;
+
+        &:not(.with-addons) {
+            .s-btn:not(.s-fullwidth) {
+                margin-left: 0.25rem;
+                margin-right: 0.25rem;
+            }
+        }
+    }
+}

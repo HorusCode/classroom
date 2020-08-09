@@ -1,0 +1,52 @@
+// FUNCTIONS AND MiXINS
+@function col-width($i, $columns) {
+    @return 100% / $columns * $i;
+}
+
+@function percentage($sideMargin, $grid-breakpoint) {
+    @return 100% - (($sideMargin * 2 / $grid-breakpoint) * 100%);
+}
+
+@mixin col-props($i, $columns, $gutter) {
+    box-sizing: border-box;
+    width: col-width($i, $columns);
+  /*  padding-left: $gutter/2;
+    padding-right: $gutter/2;*/
+}
+
+@mixin columns-loop($name, $columns, $gutter) {
+    @for $i from 1 through $columns {
+        &-#{$name}-#{$i} {
+            @include col-props($i, $columns, $gutter);
+        }
+        &-#{$name}-shift-#{$i} {
+            margin-left: col-width($i, $columns);
+        }
+    }
+}
+
+
+// CLASSES
+.s-row {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    /*margin-left: auto;
+   margin-right: auto;*/
+}
+
+.s-col {
+    @include columns-loop(desk, $default-columns, $gap);
+
+    @each $type, $var in $grid-breakpoints {
+        $columns-count: $default-columns;
+
+        @if(map_has_key($grid-types-columns-count, $type)) {
+            $columns-count: map_get($grid-types-columns-count, $type);
+        }
+
+        @media screen and (max-width: $var) {
+            @include columns-loop($type, $columns-count, $gap);
+        }
+    }
+}

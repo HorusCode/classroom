@@ -1,0 +1,28 @@
+$label-color: $text-strong !default;
+$label-weight: $weight-bold;
+
+.s-label {
+    color: $label-color;
+    display: block;
+    font-size: $size-normal;
+    font-weight: $label-weight;
+    &:not(:last-child) {
+        margin-bottom: 0.3em;
+    }
+    &.s-small {
+        font-size: $size-small;
+    }
+    &.s-medium {
+        font-size: $size-medium;
+    }
+    &.s-large {
+        font-size: $size-large;
+    }
+}
+.s-label-link {
+    display: block;
+    color: $link;
+    text-align: right;
+    font-weight: $weight-normal;
+    cursor: pointer;
+}

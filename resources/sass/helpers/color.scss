@@ -1,0 +1,62 @@
+@each $name, $pair in $colors {
+    $color: nth($pair, 1);
+    .text--#{$name} {
+        color: $color !important;
+    }
+    a.text--#{$name} {
+        &:hover, &:focus {
+            color: sarumaDarken($color, 10%) !important;
+        }
+    }
+    .bg--#{$name} {
+        background-color: $color !important;
+    }
+
+    .bg-lnr-gradient--#{$name} {
+        background-image: linear-gradient(to bottom, $color, sarumaDarken($color, 15%));
+    }
+
+    @if length($pair) >= 4 {
+        $color-light: nth($pair, 3);
+        $color-dark: nth($pair, 4);
+
+        //Light color classes
+        .text--#{$name}-light {
+            color: $color-light !important;
+        }
+        a.text--#{$name}-light {
+            &:hover,
+            &:focus {
+                color: sarumaDarken($color-light, 10%) !important;
+            }
+        }
+
+        .bg--#{$name}-light {
+            background-color: $color-light !important;
+        }
+
+        //Dark color classes
+        .text--#{$name}-dark {
+            color: $color-dark !important;
+        }
+        a.text--#{$name}-dark {
+            &:hover,
+            &:focus {
+                color: sarumaLighten($color-dark, 10%) !important;
+            }
+        }
+
+        .bg--#{$name}-dark {
+            background-color: $color-dark !important;
+        }
+    }
+}
+
+@each $name, $shade in $shades {
+    .text--#{$name} {
+        color: $shade !important;
+    }
+    .bg--#{$name} {
+        background-color: $shade !important;
+    }
+}

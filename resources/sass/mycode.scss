@@ -1,0 +1,17 @@
+// Card
+.login-card {
+    align-self: center;
+    justify-self: center;
+    width: 80%;
+    height: 50%;
+    min-height: 450px;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+// Content types
+.grid-type-1 {
+    display: grid;
+    grid-template-rows: 5em 1fr;
+}

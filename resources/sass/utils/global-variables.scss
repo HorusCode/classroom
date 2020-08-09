@@ -15,11 +15,13 @@ $white: hsl(0, 0%, 100%) !default;
 $orange: hsl(14, 100%, 53%) !default;
 $yellow: hsl(48, 100%, 67%) !default;
 $green: hsl(141, 53%, 53%) !default;
-$turquoise: hsl(171, 100%, 41%) !default;
+$violet: hsl(265, 83%, 57%) !default;
 $cyan: hsl(204, 71%, 53%) !default;
 $blue: hsl(217, 71%, 53%) !default;
 $purple: hsl(271, 100%, 71%) !default;
-$red: hsl(348, 86%, 61%) !default// Typography
+$red: hsl(348, 86%, 61%) !default;
+
+// Typography
 
 $family-sans-serif: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
 $family-monospace: monospace !default;
@@ -35,10 +37,23 @@ $weight-light: 300 !default;
 $weight-normal: 400 !default;
 $weight-medium: 500 !default;
 $weight-semibold: 600 !default;
-$weight-bold: 700 !default; // Spacing
+$weight-bold: 700 !default;
 
-$block-spacing: 1.5rem !default// Responsiveness
 
+$family-primary: $family-sans-serif !default;
+$family-secondary: $family-sans-serif !default;
+$family-code: $family-monospace !default;
+
+$size-small: $size-7 !default;
+$size-normal: $size-6 !default;
+$size-medium: $size-5 !default;
+$size-large: $size-4 !default;
+
+// Spacing
+
+$block-spacing: 1.5rem !default;
+
+// Responsiveness
 // The container horizontal gap, which acts as the offset for breakpoints
 $gap: 32px !default; // 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
 $tablet: 769px !default; // 960px container + 4rem
@@ -48,16 +63,33 @@ $widescreen-enabled: true !default; // 1344px container + 4rem
 $fullhd: 1344px + (2 * $gap) !default;
 $fullhd-enabled: true !default; // Miscellaneous
 
+
+$default-breakpoint: 960px + (2 * $gap) !default; //Desktop breakpoint
+$grid-breakpoints: (
+    "mob": 620px,
+    "tab": 769px,
+    "wide": 1152px + (2 * $gap),
+    "fullhd": 1344px + (2 * $gap),
+);
+
+$default-columns: 12;
+$grid-types-columns-count: (
+    "mob": 4
+);
+
+
 $easing: ease-out !default;
 $radius-small: 2px !default;
 $radius: 4px !default;
 $radius-large: 6px !default;
 $radius-rounded: 290486px !default;
-$speed: 86ms !default// Flags
+$speed: 86ms !default;
+
+// Flags
 
 $variable-columns: true !default;
 $rtl: false !default;
-$primary: $turquoise !default;
+$primary: $violet !default;
 
 $info: $cyan !default;
 $success: $green !default;
@@ -72,7 +104,7 @@ $dark: $grey-darker !default;
 $orange-invert: findColorInvert($orange) !default;
 $yellow-invert: findColorInvert($yellow) !default;
 $green-invert: findColorInvert($green) !default;
-$turquoise-invert: findColorInvert($turquoise) !default;
+$violet-invert: findColorInvert($violet) !default;
 $cyan-invert: findColorInvert($cyan) !default;
 $blue-invert: findColorInvert($blue) !default;
 $purple-invert: findColorInvert($purple) !default;
@@ -129,7 +161,7 @@ $pre-background: $background !default;
 
 // Link colors
 
-$link: $blue !default;
+$link: $primary !default;
 $link-invert: findColorInvert($link) !default;
 $link-light: findLightColor($link) !default;
 $link-dark: findDarkColor($link) !default;
@@ -144,107 +176,39 @@ $link-focus-border: $blue !default;
 $link-active: $grey-darker !default;
 $link-active-border: $grey-dark !default;
 
-// Typography
-
-$family-primary: $family-sans-serif !default;
-$family-secondary: $family-sans-serif !default;
-$family-code: $family-monospace !default;
-
-$size-small: $size-7 !default;
-$size-normal: $size-6 !default;
-$size-medium: $size-5 !default;
-$size-large: $size-4 !default;
-
 // Lists and maps
 $custom-colors: null !default;
 $custom-shades: null !default;
 
 $colors: mergeColorMaps(
-                ("white" : ($white, $black),
-                        "black" : ($black, $white),
-                        "light" : ($light, $light-invert),
-                        "dark" : ($dark, $dark-invert),
-                        "primary": ($primary, $primary-invert, $primary-light, $primary-dark),
-                        "link" : ($link, $link-invert, $link-light, $link-dark),
-                        "info" : ($info, $info-invert, $info-light, $info-dark),
-                        "success": ($success, $success-invert, $success-light, $success-dark),
-                        "warning": ($warning, $warning-invert, $warning-light, $warning-dark),
-                        "danger" : ($danger, $danger-invert, $danger-light, $danger-dark)),
-                $custom-colors
+    ("white" : ($white, $black),
+    "black" : ($black, $white),
+    "light" : ($light, $light-invert),
+    "dark" : ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert, $primary-light, $primary-dark),
+    "link" : ($link, $link-invert, $link-light, $link-dark),
+    "info" : ($info, $info-invert, $info-light, $info-dark),
+    "success": ($success, $success-invert, $success-light, $success-dark),
+    "warning": ($warning, $warning-invert, $warning-light, $warning-dark),
+    "danger" : ($danger, $danger-invert, $danger-light, $danger-dark)),
+    $custom-colors
 ) !default;
 
 $shades: mergeColorMaps(
-                ("black-bis" : $black-bis,
-                        "black-ter" : $black-ter,
-                        "grey-darker" : $grey-darker,
-                        "grey-dark" : $grey-dark,
-                        "grey" : $grey,
-                        "grey-light" : $grey-light,
-                        "grey-lighter": $grey-lighter,
-                        "white-ter" : $white-ter,
-                        "white-bis" : $white-bis),
-                $custom-shades
+    ("black-bis" : $black-bis,
+    "black-ter" : $black-ter,
+    "grey-darker" : $grey-darker,
+    "grey-dark" : $grey-dark,
+    "grey" : $grey,
+    "grey-light" : $grey-light,
+    "grey-lighter": $grey-lighter,
+    "white-ter" : $white-ter,
+    "white-bis" : $white-bis),
+    $custom-shades
 ) !default;
 
+
 $sizes: $size-1 $size-2 $size-3 $size-4 $size-5 $size-6 $size-7 !default;
-
-
-// Body
-$body-bg: #f8fafc;
-
-// Typography
-$font-family-sans-serif: 'Ubuntu', sans-serif;
-$font-size-base: 1rem;
-$line-height-base: 1.6;
-
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #694ad3;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
-$muted: #818181;
-$grey: #535252;
-$white: #fff;
-// Border color
-$border-color: rgba(0, 0, 0, 0.14);
-$radius-general: 3px;
-
-
-
-$grid-gap: 2rem;
-$margin-gap: 1.4rem;
-$content-padding: 0 2rem;
-
-
-
-$text-color: darken($grey, 15%);
-
-
-
-$primary: $purple;
-$secondary: $cyan;
-$success: $green;
-$danger: $red;
-$warning: $orange;
-$info: $blue;
-
-
-$link: $primary;
-
-
-//Breakpoints
-$breakpoint-phone: 480px;
-
-
-$input-bg: #e6e6e6;
-$table-bg: #f6f6f6;
-
 
 //Spinner
 $basic-spinner-dimensions: 64px; //width and height of spinner

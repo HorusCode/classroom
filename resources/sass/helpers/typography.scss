@@ -1,0 +1,56 @@
+$alignments: ('center', 'justify' 'left', 'right');
+
+@each $text-align in $alignments {
+    .text--#{$text-align} {
+        text-align: #{$text-align} !important
+    }
+}
+
+@each $text-align in $alignments {
+    @include mob {
+        .text-mob--#{$text-align}{
+            text-align: #{$text-align} !important;
+        }
+    }
+    @include tab {
+        .text-tab--#{$text-align} {
+            text-align: #{$text-align} !important;
+        }
+    }
+    @include tab-only {
+        .text-tab-only--#{$text-align} {
+            text-align: #{$text-align} !important;
+        }
+    }
+    @include touch {
+        .text-touch--#{$text-align} {
+            text-align: #{$text-align} !important;
+        }
+    }
+    @include desk {
+        .text-desk--#{$text-align} {
+            text-align: #{$text-align} !important;
+        }
+
+    }
+    @include desk-only {
+        .text-desk-only-#{$text-align} {
+            text-align: #{$text-align} !important;
+        }
+    }
+    @include wide {
+        .text-wide-#{$text-align} {
+            text-align: #{$text-align} !important;
+        }
+    }
+    @include wide-only {
+        .text-wide-only-#{$text-align} {
+            text-align: #{$text-align} !important;
+        }
+    }
+    @include fullhd {
+        .text-fullhd-#{$text-align} {
+            text-align: #{$text-align} !important;
+        }
+    }
+}

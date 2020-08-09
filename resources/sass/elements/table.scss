@@ -7,7 +7,7 @@
 .table-header {
   position: sticky;
   top:0;
-  padding: $margin-gap;
+  padding: 50px;
   background-color: white;
   border-radius: 3px 3px 0 0;
   z-index: 1;
@@ -16,8 +16,8 @@
 
 .table {
   min-width: 100%; // adjust to your needs
-  background: $table-bg;
-  color: $text-color;
+  background: red;
+  color: red;
   th {
     display: none; // for accessibility, use a visually hidden method here instead! Thanks, reddit!
   }
@@ -27,7 +27,7 @@
   }
 
   tbody tr:nth-of-type(odd) {
-    background-color: darken($table-bg, 4%);
+    background-color: darken(red, 4%);
   }
 
   td {
@@ -50,7 +50,7 @@
       display: inline-block;
       // end options
 
-      @media (min-width: $breakpoint-phone) {
+      @media (min-width: 100px) {
         display: none;
       }
     }
@@ -59,7 +59,7 @@
   th, td {
     margin: .5em 1em;
     text-align: center;
-    @media (min-width: $breakpoint-phone) {
+    @media (min-width: 100px) {
       display: table-cell;
       padding: 1em .5em;
 

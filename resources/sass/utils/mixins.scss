@@ -62,7 +62,7 @@
   }
 
   &:hover {
-    background-color: bulmaRgba(black, 0.05);
+    background-color: sarumaRgba(black, 0.05);
   }
 
   // Modifers
@@ -88,8 +88,19 @@
   -webkit-overflow-scrolling: touch;
 }
 
+@mixin placeholder {
+    $placeholders: ':-moz' ':-webkit-input' '-moz' '-ms-input';
+    @each $placeholder in $placeholders {
+        &:#{$placeholder}-placeholder {
+            @content;
+        }
+    }
+}
+
+
 
 // Responsiveness
+
 
 @mixin from($device) {
   @media screen and (min-width: $device) {
@@ -103,19 +114,19 @@
   }
 }
 
-@mixin mobile {
+@mixin mob {
   @media screen and (max-width: $tablet - 1px) {
     @content
   }
 }
 
-@mixin tablet {
+@mixin tab {
   @media screen and (min-width: $tablet), print {
     @content
   }
 }
 
-@mixin tablet-only {
+@mixin tab-only {
   @media screen and (min-width: $tablet) and (max-width: $desktop - 1px) {
     @content
   }
@@ -127,13 +138,13 @@
   }
 }
 
-@mixin desktop {
+@mixin desk {
   @media screen and (min-width: $desktop) {
     @content
   }
 }
 
-@mixin desktop-only {
+@mixin desk-only {
   @if $widescreen-enabled {
     @media screen and (min-width: $desktop) and (max-width: $widescreen - 1px) {
       @content
@@ -149,7 +160,7 @@
   }
 }
 
-@mixin widescreen {
+@mixin wide {
   @if $widescreen-enabled {
     @media screen and (min-width: $widescreen) {
       @content
@@ -157,7 +168,7 @@
   }
 }
 
-@mixin widescreen-only {
+@mixin wide-only {
   @if $widescreen-enabled and $fullhd-enabled {
     @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1px) {
       @content
@@ -257,7 +268,7 @@
 
 @mixin delete {
   @extend %unselectable;
-  background-color: bulmaRgba($scheme-invert, 0.2);
+  background-color: sarumaRgba($scheme-invert, 0.2);
   border: none;
   border-radius: $radius-rounded;
   cursor: pointer;
@@ -300,11 +311,11 @@
 
   &:hover,
   &:focus {
-    background-color: bulmaRgba($scheme-invert, 0.3);
+    background-color: sarumaRgba($scheme-invert, 0.3);
   }
 
   &:active {
-    background-color: bulmaRgba($scheme-invert, 0.4);
+    background-color: sarumaRgba($scheme-invert, 0.4);
   }
 
   // Sizes
@@ -353,7 +364,7 @@
   width: 1em;
 }
 
-@mixin loader {
+%loader {
   @include loader;
 }
 
