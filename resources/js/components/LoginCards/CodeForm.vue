@@ -11,15 +11,12 @@
             <form @submit.prevent="login">
                                <fieldset>
                     <div class="s-field">
-                        <label class="s-label">Email</label>
-                        <div class="s-control">
+                        <label class="s-label">Code</label>
+                        <div class="s-control s-control__icons-right">
                             <input type="email" class="s-input s-rounded" placeholder="Write email...">
-                        </div>
-                    </div>
-                    <div class="s-field">
-                        <label class="s-label">Password</label>
-                        <div class="s-control">
-                            <input type="password" class="s-input s-rounded" placeholder="Write password...">
+                            <span class="s-icon s-right">
+                                <i class="mdi mdi-code-brackets"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between s-mgb-3">

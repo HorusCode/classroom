@@ -20,7 +20,7 @@
   }
 }
 
-@mixin fa($size, $dimensions) {
+@mixin mdi($size, $dimensions) {
   display: inline-block;
   font-size: $size;
   height: $dimensions;

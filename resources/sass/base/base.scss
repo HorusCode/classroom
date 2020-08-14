@@ -124,3 +124,9 @@ table {
     color: $text-strong
   }
 }
+
+
+::selection {
+    color: $white;
+    background: $primary;
+}

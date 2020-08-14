@@ -11,14 +11,23 @@
                 <fieldset>
                     <div class="s-field">
                         <label class="s-label">Email</label>
-                        <div class="s-control">
-                            <input type="email" class="s-input s-rounded" placeholder="Write email...">
+                        <div class="s-control s-control__icons-right">
+                            <input type="email" v-model="email" class="s-input s-rounded" placeholder="Write email...">
+                            <span class="s-icon s-right">
+                              <i class="mdi mdi-email-outline"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="s-field">
                         <label class="s-label">Password</label>
-                        <div class="s-control">
-                            <input type="password" class="s-input s-rounded" placeholder="Write password...">
+                        <div class="s-control s-control__icons-right">
+                            <input :type="checkPassword ? 'text' : 'password'" v-model="password" class="s-input s-rounded"
+                                   placeholder="Write password...">
+                            <span class="s-icon s-right">
+                                <i class="mdi mdi-form-textbox-password" v-if="password.trim() === ''"></i>
+                                <i v-else :class="{'mdi-eye-outline text--primary': checkPassword, 'mdi-eye-off-outline': !checkPassword}" class="mdi" @click="checkPassword = !checkPassword"></i>
+                            </span>
+
                         </div>
                     </div>
                     <div class="d-flex justify-content-between s-mgb-3">
@@ -46,6 +55,9 @@
         data() {
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                email: '',
+                password: '',
+                checkPassword: false
             }
         },
         methods: {
@@ -73,5 +85,8 @@
 </script>
 
 <style scoped>
-
+    .mdi-eye-outline, .mdi-eye-off-outline {
+        pointer-events: all;
+        cursor: pointer;
+    }
 </style>

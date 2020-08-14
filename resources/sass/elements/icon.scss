@@ -1,0 +1,31 @@
+$icon-dimensions: 1.5rem !default;
+$icon-dimensions-small: 1rem !default;
+$icon-dimensions-medium: 2rem !default;
+$icon-dimensions-large: 3rem !default;
+
+.s-icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: $icon-dimensions;
+    width: $icon-dimensions; // Sizes
+    &.s-small {
+        height: $icon-dimensions-small;
+        width: $icon-dimensions-small
+    }
+
+    &.s-medium {
+        height: $icon-dimensions-medium;
+        width: $icon-dimensions-medium;
+    }
+
+    &.s-large {
+        height: $icon-dimensions-large;
+        width: $icon-dimensions-large;
+    }
+
+    #{$icon-class} {
+        font-size: $icon-size;
+    }
+
+}

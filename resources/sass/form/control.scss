@@ -5,8 +5,8 @@
     position: relative;
     text-align: inherit;
     // Modifiers
-    &.s-with-icons-left,
-    &.s-with-icons-right {
+    &#{&}__icons-left,
+    &#{&}__icons-right {
         .s-input,
         .s-select {
             &:focus {
@@ -27,19 +27,19 @@
                 font-size: $size-large;
             }
 
-            .s-icon {
-                color: $input-icon-color;
-                height: $input-height;
-                pointer-events: none;
-                position: absolute;
-                top: 0;
-                width: $input-height;
-                z-index: 4;
-            }
+        }
+        .s-icon {
+            color: $input-icon-color;
+            height: $input-height;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            width: $input-height;
+            z-index: 4;
         }
     }
 
-    &.s-with-icons-left {
+    &#{&}__icons-left {
         .s-input,
         .s-select select {
             padding-left: $input-height;
@@ -50,7 +50,7 @@
         }
     }
 
-    &.s-with-icons-right {
+    &#{&}__icons-right {
         .s-input,
         .s-select select {
             padding-right: $input-height;
