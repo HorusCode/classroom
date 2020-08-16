@@ -15,3 +15,11 @@
     display: grid;
     grid-template-rows: 5em 1fr;
 }
+
+// TODO: import in saruma
+.form-message {
+    display: block;
+    color: $white;
+    font-size: $size-small;
+    text-align: center;
+}

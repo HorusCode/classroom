@@ -161,5 +161,10 @@
             }
         }
     }
+    &--message {
+        display: block;
+        font-size: $size-small;
+        margin-top: 0.25rem;
+    }
 }
 

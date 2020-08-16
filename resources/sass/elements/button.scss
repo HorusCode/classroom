@@ -209,8 +209,8 @@ $button-static-border-color: $border !default;
             }
 
             &.s-loading {
-                &::after {
-                    border-color: transparent transparent $color-invert $color-invert !important;
+                &::after, &::before {
+                    border-color: $color-invert !important;
                 }
             }
 
@@ -231,8 +231,8 @@ $button-static-border-color: $border !default;
                 }
 
                 &.s-loading {
-                    &::after {
-                        border-color: transparent transparent $color $color !important;
+                    &::after, &::before {
+                        border-color:  $color !important;
                     }
 
                     &:hover,
@@ -272,8 +272,8 @@ $button-static-border-color: $border !default;
                     &.s-hovered,
                     &:focus,
                     &.s-focused {
-                        &::after {
-                            border-color: transparent transparent $color $color !important;
+                        &::after, &::before {
+                            border-color: $color !important;
                         }
                     }
                 }
@@ -346,11 +346,9 @@ $button-static-border-color: $border !default;
     &.s-loading {
         color: transparent !important;
         pointer-events: none;
-
+        @extend %loader;
         &::after {
-            @extend %loader;
             @include center(1em);
-            position: absolute !important;
         }
     }
 

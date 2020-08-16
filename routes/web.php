@@ -12,4 +12,11 @@
 |
 */
 
-Route::view('/','pages/auth/login');
+Route::post('auth/login', 'Api\v1\LoginController@login');
+
+Route::view('/login','pages/auth/login')->name('login');
+
+Route::middleware('auth')->group(function () {
+    Route::view('/','pages/index')->name('home');
+});
+
