@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title> @yield('title') </title>
-
+    <link href="{{ asset('css/materialdesignicons.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/saruma.css') }}">
 </head>
 <body class="bg-lnr-gradient--primary">

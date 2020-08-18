@@ -1,17 +1,26 @@
-.header {
-  height: 64px;
-  display: flex;
-  max-width: 100%;
-  grid-area: h;
-  padding: 0 10px;
-  align-items: center;
+$header-shadow: $default-shadow !default;
 
-  border-radius: 0;
-  &__items {
+.s-header {
+    height: 64px;
     display: flex;
-  }
-  &__item {
-    &:first-child > .btn {margin-left: 0}
-    &:last-child  > .btn {margin-right: 0}
-  }
+    max-width: 100%;
+    grid-area: h;
+    padding: 0 10px;
+    align-items: center;
+    box-shadow: $header-shadow;
+    border-radius: 0;
+
+    &__items {
+        display: flex;
+    }
+
+    &__item {
+        &:first-child > .btn {
+            margin-left: 0
+        }
+
+        &:last-child > .btn {
+            margin-right: 0
+        }
+    }
 }

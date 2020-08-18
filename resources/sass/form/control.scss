@@ -31,10 +31,10 @@
         .s-icon {
             color: $input-icon-color;
             height: $input-height;
+            width: $input-height;
             pointer-events: none;
             position: absolute;
             top: 0;
-            width: $input-height;
             z-index: 4;
         }
     }

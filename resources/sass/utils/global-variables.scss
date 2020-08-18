@@ -51,7 +51,7 @@ $size-large: $size-4 !default;
 
 // Spacing
 
-$block-spacing: 1.5rem !default;
+$block-spacing: 1.1rem !default;
 
 // Responsiveness
 // The container horizontal gap, which acts as the offset for breakpoints
@@ -213,7 +213,8 @@ $sizes: $size-1 $size-2 $size-3 $size-4 $size-5 $size-6 $size-7 !default;
 $icon-class: '.mdi';
 $icon-size: 1.5em;
 
-
+//Shadow
+$default-shadow: 0 3px 14px 0 #0000001a !default;
 
 //Spinner
 $basic-spinner-dimensions: 64px; //width and height of spinner

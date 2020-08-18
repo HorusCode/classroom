@@ -1,0 +1,112 @@
+$sidebar-shadow: $default-shadow;
+$sidebar-margin: $block-spacing !default;
+$sidebar-height: calc(100vh - #{$sidebar-margin * 8});
+$sidebar-close-left-icon-size: $size-large;
+.s-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: sticky;
+    top: $sidebar-margin;
+    margin-left: $sidebar-margin;
+    width: 280px;
+    height: $sidebar-height;
+    flex: 0 0 280px;
+    box-shadow: $sidebar-shadow;
+    overflow: hidden;
+    transition: width .2s cubic-bezier(0.37, 0, 0.63, 1);
+    &__header, &__footer {
+        width: 100%;
+        padding: 1rem;
+        background-color: #00000003;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-bottom: 1px solid $border;
+    }
+
+    &__content {
+        height: 100%;
+        padding: 0 1.5rem 1.5rem;
+
+        .mdi {
+            transition: all .2s cubic-bezier(0.37, 0, 0.63, 1);
+        }
+    }
+
+
+
+    &.s-close {
+        width: 80px;
+        .s-sidebar__header {
+            justify-content: center;
+        }
+        .s-sidebar__content {
+            text-indent: -999em;
+
+            .s-icon.s-left {
+                left: -1px;
+                text-indent: initial;
+                height: auto;
+                width: auto;
+                font-size: $sidebar-close-left-icon-size;
+            }
+
+            .s-icon.s-right{
+                display: none;
+            }
+
+            .s-vertical-list__heading:before {
+                opacity: 1;
+            }
+
+            .s-submenu {
+                display: none;
+            }
+        }
+
+    }
+
+
+}
+
+// TODO: create burger element
+.burger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    width: 45px;
+    padding: 8px;
+    cursor: pointer;
+
+    & > span {
+        display: block;
+        height: 4px;
+        width: 100%;
+        background-color: $grey;
+        border-radius: 5px;
+        transition: transform .2s linear .25s;
+    }
+
+    &.s-active {
+        span:nth-child(2) {
+            transform: scale(0);
+        }
+
+        span:nth-child(1) {
+            transform: rotate(-45deg) translate(-9px, 9px);
+        }
+
+        span:nth-child(3) {
+            transform: rotate(45deg) translate(-9px, -9px);
+        }
+    }
+
+}
+
+

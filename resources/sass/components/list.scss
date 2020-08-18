@@ -1,118 +1,163 @@
-.vertical-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+$vertical-list-height: $control-height !default;
+$vertical-list-header-color: $primary !default;
+$vertical-list-color: $primary !default;
+$vertical-list-heading-size: $size-small !default;
+$vertical-list-link-color: $text !default;
 
-  &__heading {
-    text-transform: uppercase;
-    font-size: .7438rem;
-    margin: 1rem 0;
-    color: $primary;
-    white-space: nowrap;
-  }
+$submenu-height: $vertical-list-height - 0.3em;
 
-  &__item > a {
-    display: block;
-    line-height: 2.5rem;
-    height: 2.5rem;
-    padding: 0 1.5rem 0 1.95rem;
-    position: relative;
-    border-radius: .35rem;
-    color: #6c757d;
-    white-space: nowrap;
-    transition: all .2s;
-    margin: .1rem 0;
-  }
 
-  .pos-left {
-    left: 0;
-  }
 
-  .pos-right {
-    right: 0;
-  }
+.s-vertical-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &__heading {
+        text-transform: uppercase;
+        font-size: $vertical-list-heading-size;
+        margin: 1rem 0;
+        color: $vertical-list-header-color;
+        white-space: nowrap;
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: $vertical-list-header-color;
+            text-indent: initial;
+            opacity: 0;
+        }
+    }
+
+    &__item > a {
+        display: block;
+        line-height: $vertical-list-height;
+        height: $vertical-list-height;
+        position: relative;
+        border-radius: $radius-rounded;
+        color: $vertical-list-link-color;
+        white-space: nowrap;
+       /* transition: all .2s;*/
+        margin: .1rem 0;
+        cursor: pointer;
+        &:hover, &.s-active {
+            color: $vertical-list-color;
+        }
+    }
+
+    &__title {
+        position: relative;
+        & > .s-icon {
+            color: inherit;
+            height: $vertical-list-height;
+            width: $vertical-list-height;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            z-index: 4;
+        }
+
+        &.s-with-icon-left, &.s-with-icon-double {
+            padding-left: $vertical-list-height;
+            .s-icon.s-left {
+                left: 0;
+                justify-content: normal;
+            }
+        }
+
+        &.s-with-icon-right, &.s-with-icon-double {
+            padding-right: $vertical-list-height;
+            .s-icon.s-right {
+                right: 0;
+            }
+        }
+    }
+
 }
 
-.submenu {
-  transition: padding 300ms;
-  padding: 0 .5rem;
-
-  &.collapse {
-    height: 0;
+.s-submenu {
+    transition: padding 300ms;
+    padding: 0 .5rem;
     overflow: hidden;
-  }
-
-
-  &__item > a {
-    display: block;
-    color: #6c757d;
-    height: 2.2rem;
-    line-height: 2.2rem;
-    padding: 0 2.25rem 0;
-    border-radius: 50px;
-    margin: 0;
-    position: relative;
-
-    &::before {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      left: 20px;
-      top: 50%;
-      margin-top: -2px;
-      content: '';
-      background: $primary;
-      border-radius: 50%;
+    height: 0;
+    &.s-active {
+        height: auto;
     }
 
-    &:hover {
-      color: $primary;
-    }
+    &__item > a {
+        display: block;
+        color: $vertical-list-color;
+        height: $submenu-height;
+        line-height: $submenu-height;
+        padding: 0 2.25rem 0;
+        border-radius: $radius-rounded;
+        margin: 0;
+        position: relative;
 
-    &.active {
-      background-color: $primary;
-      color: #fff;
-    }
+        &::before {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            left: 20px;
+            top: 50%;
+            margin-top: -2px;
+            content: '';
+            background: $vertical-list-color;
+            border-radius: 50%;
+        }
 
-    &.active::before {
-      background: #fff;
+        &:hover {
+            color: $vertical-list-color;
+        }
+
+        &.s-active {
+            background-color: $vertical-list-color;
+            color: #fff;
+        }
+
+        &.s-active::before {
+            background: #fff;
+        }
     }
-  }
 }
 
 
 .list-group {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0;
-  margin-bottom: 0;
-
-  &-item {
-    position: relative;
-    display: block;
-    padding: .75rem 1.25rem;
-    margin-bottom: -1px;
-  }
-
-  &-content {
     display: flex;
-    position: relative;
-    align-items: center
-  }
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
 
-  &-content-right {
-    margin-left: auto;
-  }
+    &-item {
+        position: relative;
+        display: block;
+        padding: .75rem 1.25rem;
+        margin-bottom: -1px;
+    }
 
-  &-content-right {
-    margin-left: auto;
-  }
+    &-content {
+        display: flex;
+        position: relative;
+        align-items: center
+    }
 
-  .item-icon {
-    font-size: 2.5rem;
-  }
+    &-content-right {
+        margin-left: auto;
+    }
 
-  .list-heading {
-    font-size: 1.1rem;
-  }
+    &-content-right {
+        margin-left: auto;
+    }
+
+    .item-icon {
+        font-size: 2.5rem;
+    }
+
+    .list-heading {
+        font-size: 1.1rem;
+    }
 }
