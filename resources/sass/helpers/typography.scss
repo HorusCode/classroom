@@ -1,55 +1,55 @@
 $alignments: ('center', 'justify' 'left', 'right');
 
 @each $text-align in $alignments {
-    .text--#{$text-align} {
+    .s-text--#{$text-align} {
         text-align: #{$text-align} !important
     }
 }
 
 @each $text-align in $alignments {
     @include mob {
-        .text-mob--#{$text-align}{
+        .s-text-mob--#{$text-align}{
             text-align: #{$text-align} !important;
         }
     }
     @include tab {
-        .text-tab--#{$text-align} {
+        .s-text-tab--#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
     @include tab-only {
-        .text-tab-only--#{$text-align} {
+        .s-text-tab-only--#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
     @include touch {
-        .text-touch--#{$text-align} {
+        .s-text-touch--#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
     @include desk {
-        .text-desk--#{$text-align} {
+        .s-text-desk--#{$text-align} {
             text-align: #{$text-align} !important;
         }
 
     }
     @include desk-only {
-        .text-desk-only-#{$text-align} {
+        .s-text-desk-only-#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
     @include wide {
-        .text-wide-#{$text-align} {
+        .s-text-wide-#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
     @include wide-only {
-        .text-wide-only-#{$text-align} {
+        .s-text-wide-only-#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
     @include fullhd {
-        .text-fullhd-#{$text-align} {
+        .s-text-fullhd-#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }

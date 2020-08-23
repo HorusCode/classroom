@@ -2,10 +2,10 @@
     <div class="s-card">
         <div class="s-card__content">
             <header class="s-card__header">
-                <h3 class="text--center s-mgy-3">
-                    <span class="text--primary">Login</span> your account
+                <h3 class="s-text--center s-mgy-3">
+                    <span class="s-text--primary">Login</span> your account
                 </h3>
-                <span v-if="'message' in data" :class="[data.success ? 'bg--success' : 'bg--danger']"
+                <span v-if="'message' in data" :class="[data.success ? 's-bg--success' : 's-bg--danger']"
                       class="form-message">{{ data.message }}</span>
             </header>
             <form @submit.prevent="login">
@@ -13,28 +13,28 @@
                 <fieldset v-bind:disabled="loading">
                     <div class="s-field">
                         <label class="s-label">Email</label>
-                        <div class="s-control s-control__icons-right">
+                        <div class="s-control s-with-icon-right">
                             <input type="email" v-model="email" class="s-input s-rounded" placeholder="Write email...">
                             <span class="s-icon s-right">
                               <i class="mdi mdi-email-outline"></i>
                             </span>
                         </div>
-                        <span v-if="has(data, 'errors.email')" class="s-field--message text--danger">{{ data.errors.email[0] }}</span>
+                        <span v-if="has(data, 'errors.email')" class="s-field--message s-text--danger">{{ data.errors.email[0] }}</span>
                     </div>
                     <div class="s-field">
                         <label class="s-label">Password</label>
-                        <div class="s-control s-control__icons-right">
+                        <div class="s-control s-with-icon-right">
                             <input :type="checkPassword ? 'text' : 'password'" v-model="password"
                                    class="s-input s-rounded"
                                    placeholder="Write password...">
                             <span class="s-icon s-right">
                                 <i class="mdi mdi-form-textbox-password" v-if="password.trim() === ''"></i>
                                 <i v-else
-                                   :class="{'mdi-eye-outline text--primary': checkPassword, 'mdi-eye-off-outline': !checkPassword}"
+                                   :class="{'mdi-eye-outline s-text--primary': checkPassword, 'mdi-eye-off-outline': !checkPassword}"
                                    class="mdi" @click="checkPassword = !checkPassword"></i>
                             </span>
                         </div>
-                        <span v-if="has(data, 'errors.password')" class="s-field--message text--danger">{{ data.errors.password[0] }}</span>
+                        <span v-if="has(data, 'errors.password')" class="s-field--message s-text--danger">{{ data.errors.password[0] }}</span>
                     </div>
                     <div class="d-flex justify-content-between s-mgb-3">
                         <span class="s-label-link" @click="$emit('showform', 'CodeForm')">

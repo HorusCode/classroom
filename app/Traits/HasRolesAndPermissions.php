@@ -11,7 +11,7 @@ trait HasRolesAndPermissions
 {
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'users_roles');
+        return $this->belongsToMany(Role::class, 'users_roles')->withTimestamps();
     }
 
     public function permissions()

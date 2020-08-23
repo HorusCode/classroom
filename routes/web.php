@@ -19,7 +19,7 @@ Route::view('/login','pages/auth/login')->name('login');
 Route::middleware('auth')->group(function () {
     Route::view('/','pages/index')->name('home');
     Route::group(['middleware' => 'role:teacher'], function () {
-        Route::view('/students/add', 'pages/students/add')->name('add-students');
+        Route::view('/people/add', 'pages/people/add')->name('add_people');
     });
 });
 

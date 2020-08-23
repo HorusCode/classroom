@@ -347,7 +347,7 @@ $button-static-border-color: $border !default;
         color: transparent !important;
         pointer-events: none;
         @extend %loader;
-        &::after {
+        &::after, &::before {
             @include center(1em);
         }
     }

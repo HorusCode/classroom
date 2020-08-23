@@ -5,8 +5,9 @@
     position: relative;
     text-align: inherit;
     // Modifiers
-    &#{&}__icons-left,
-    &#{&}__icons-right {
+    &.s-with-icon-left,
+    &.s-with-icon-right,
+    &.s-with-icon-double{
         .s-input,
         .s-select {
             &:focus {
@@ -39,7 +40,7 @@
         }
     }
 
-    &#{&}__icons-left {
+    &.s-with-icon-left, &.s-with-icon-double {
         .s-input,
         .s-select select {
             padding-left: $input-height;
@@ -50,7 +51,7 @@
         }
     }
 
-    &#{&}__icons-right {
+    &.s-with-icon-right, &.s-with-icon-double {
         .s-input,
         .s-select select {
             padding-right: $input-height;

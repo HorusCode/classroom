@@ -13,7 +13,7 @@
     <link href="{{ asset('css/materialdesignicons.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/saruma.css') }}">
 </head>
-<body class="bg-lnr-gradient--primary">
+<body class="s-bg-lnr-gradient--primary">
 <div id="app" class="s-grid-login">
     <div class="s-card login-card">
         <div class="s-row h-100 no-wrap">

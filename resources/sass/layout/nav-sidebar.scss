@@ -1,7 +1,9 @@
-$sidebar-shadow: $default-shadow;
+$sidebar-shadow: $default-shadow !default;
 $sidebar-margin: $block-spacing !default;
-$sidebar-height: calc(100vh - #{$sidebar-margin * 8});
-$sidebar-close-left-icon-size: $size-large;
+$sidebar-height: calc(100vh - #{$sidebar-margin * 8}) !default;
+$sidebar-close-left-icon-size: $size-medium !default;
+$sidebar-close-item-height: 3em !default;
+
 .s-sidebar {
     display: flex;
     flex-direction: column;
@@ -48,7 +50,7 @@ $sidebar-close-left-icon-size: $size-large;
             text-indent: -999em;
 
             .s-icon.s-left {
-                left: -1px;
+                left: 1px;
                 text-indent: initial;
                 height: auto;
                 width: auto;
@@ -57,6 +59,11 @@ $sidebar-close-left-icon-size: $size-large;
 
             .s-icon.s-right{
                 display: none;
+            }
+
+            .s-vertical-list__item > a {
+                line-height: $sidebar-close-item-height;
+                height: $sidebar-close-item-height;
             }
 
             .s-vertical-list__heading:before {

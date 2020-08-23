@@ -1,77 +1,198 @@
-.table-wrapper {
-  margin: 30px 0;
-  border-radius: .4em;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+$table-color: $text-strong !default;
+$table-background-color: $scheme-main !default;
+
+$table-cell-border: 1px solid $border !default;
+$table-cell-border-width: 0 0 1px !default;
+$table-cell-padding: 0.5em 0.75em !default;
+$table-cell-heading-color: $text-strong !default;
+
+$table-head-cell-border-width: 0 0 2px !default;
+$table-head-cell-color: $text-strong !default;
+$table-foot-cell-border-width: 2px 0 0 !default;
+$table-foot-cell-color: $text-strong !default;
+
+$table-head-background-color: transparent !default;
+$table-body-background-color: transparent !default;
+$table-foot-background-color: transparent !default;
+
+$table-row-hover-background-color: $scheme-main-bis !default;
+
+$table-row-active-background-color: $primary !default;
+$table-row-active-color: $primary-invert !default;
+
+$table-striped-row-even-background-color: $scheme-main-bis !default;
+$table-striped-row-even-hover-background-color: $scheme-main-ter !default;
+
+.s-table {
+    @extend %block;
+    background-color: $table-background-color;
+    color: $table-color;
+
+    td,
+    th {
+        border: $table-cell-border;
+        border-width: $table-cell-border-width;
+        padding: $table-cell-padding;
+        vertical-align: top;
+        // Colors
+        @each $name, $pair in $colors {
+            $color: nth($pair, 1);
+            $color-invert: nth($pair, 2);
+
+            &.s-cell--#{$name} {
+                background-color: $color;
+                border-color: $color;
+                color: $color-invert;
+            }
+        }
+        // Modifiers
+        &.s-narrow {
+            white-space: nowrap;
+            width: 1%;
+        }
+
+        &.s-selected {
+            background-color: $table-row-active-background-color;
+            color: $table-row-active-color;
+
+            a,
+            strong {
+                color: currentColor;
+            }
+        }
+
+        &.s-vcentered {
+            vertical-align: middle;
+        }
+    }
+
+    th {
+        color: $table-cell-heading-color;
+
+        &:not([align]) {
+            text-align: inherit;
+        }
+    }
+
+    tr {
+        &.is-selected {
+            background-color: $table-row-active-background-color;
+            color: $table-row-active-color;
+
+            a,
+            strong {
+                color: currentColor;
+            }
+
+            td,
+            th {
+                border-color: $table-row-active-color;
+                color: currentColor;
+            }
+        }
+    }
+
+    thead {
+        background-color: $table-head-background-color;
+
+        td,
+        th {
+            border-width: $table-head-cell-border-width;
+            color: $table-head-cell-color;
+        }
+    }
+
+    tfoot {
+        background-color: $table-foot-background-color;
+
+        td,
+        th {
+            border-width: $table-foot-cell-border-width;
+            color: $table-foot-cell-color;
+        }
+    }
+
+    tbody {
+        background-color: $table-body-background-color;
+
+        tr {
+            &:last-child {
+                td,
+                th {
+                    border-bottom-width: 0;
+                }
+            }
+        }
+    }
+
+    // Modifiers
+    &.s-bordered {
+        td,
+        th {
+            border-width: 1px;
+        }
+
+        tr {
+            &:last-child {
+                td,
+                th {
+                    border-bottom-width: 1px;
+                }
+            }
+        }
+    }
+
+    &.s-fullwidth {
+        width: 100%;
+    }
+
+    &.s-hoverable {
+        tbody {
+            tr:not(.s-selected) {
+                &:hover {
+                    background-color: $table-row-hover-background-color;
+                }
+            }
+        }
+
+
+        &.s-striped {
+            tbody {
+                tr:not(.s-selected) {
+                    &:hover {
+                        background-color: $table-row-hover-background-color;
+
+                        &:nth-child(even) {
+                            background-color: $table-striped-row-even-hover-background-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.s-narrow {
+        td,
+        th {
+            padding: 0.25em 0.5em;
+        }
+    }
+
+    &.s-striped {
+        tbody {
+            tr:not(.s-selected) {
+                &:nth-child(even) {
+                    background-color: $table-striped-row-even-background-color;
+                }
+            }
+        }
+    }
 }
 
-.table-header {
-  position: sticky;
-  top:0;
-  padding: 50px;
-  background-color: white;
-  border-radius: 3px 3px 0 0;
-  z-index: 1;
-}
-
-
-.table {
-  min-width: 100%; // adjust to your needs
-  background: red;
-  color: red;
-  th {
-    display: none; // for accessibility, use a visually hidden method here instead! Thanks, reddit!
-  }
-
-  tbody > tr > td {
-    border-top: 1px solid #ddd;
-  }
-
-  tbody tr:nth-of-type(odd) {
-    background-color: darken(red, 4%);
-  }
-
-  td {
-    display: block;
-
-    &:first-child {
-      padding-top: .5em;
-    }
-
-    &:last-child {
-      padding-bottom: .5em;
-    }
-
-    &:before {
-      content: attr(data-th) ": "; // who knew you could do this? The internet, that's who.
-      font-weight: bold;
-
-      // optional stuff to make it look nicer
-      width: 6.5em; // magic number :( adjust according to your own content
-      display: inline-block;
-      // end options
-
-      @media (min-width: 100px) {
-        display: none;
-      }
-    }
-  }
-
-  th, td {
-    margin: .5em 1em;
-    text-align: center;
-    @media (min-width: 100px) {
-      display: table-cell;
-      padding: 1em .5em;
-
-      &:last-child {
-        padding-right: 0;
-      }
-    }
-
-    &:before {
-      color: #dd5;
-    }
-  }
-
-
+.s-table-container {
+    @extend %block;
+    @include overflow-touch;
+    overflow: auto;
+    overflow-y: hidden;
+    max-width: 100%;
 }

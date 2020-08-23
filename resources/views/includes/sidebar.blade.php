@@ -29,11 +29,11 @@
                 </a>
                 <ul class="s-submenu">
                     <li class="s-submenu__item">
-                        <a class="{{ $route === 'add-students' ? 's-active' : ''}}"
-                           href="">Создать</a>
+                        <a class="{{ $route === 'add_people' ? 's-active' : ''}}"
+                           href="{{route('add_people')}}">Создать</a>
                     </li>
                     <li class="s-submenu__item">
-                        <a class="{{ $route === 'view-students' ? 's-active' : '' }}"
+                        <a class="{{ $route === 'view_students' ? 's-active' : '' }}"
                            href="">Просмотреть</a>
                     </li>
                 </ul>
