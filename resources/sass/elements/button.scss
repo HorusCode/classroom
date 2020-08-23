@@ -67,7 +67,7 @@ $button-static-border-color: $border !default;
         font-family: $button-family;
     }
     justify-content: center;
-    padding: $button-padding-y $button-padding-y;
+    padding: $button-padding-y $button-padding-x;
     text-align: center;
     white-space: nowrap;
 
@@ -381,9 +381,7 @@ $button-static-border-color: $border !default;
         }
     }
 
-    &:last-child {
-        margin-bottom: -0.5rem;
-    }
+
 
     &:not(:last-child) {
         margin-bottom: 1rem;

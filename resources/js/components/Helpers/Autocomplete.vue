@@ -7,6 +7,7 @@
             class="s-input"
             type="text"
             v-model="newValue"
+            v-bind="$attrs"
             @input="onInput"
             @blur="isActive = isActiveSuggestion"
             @keydown.enter="onEnter"
@@ -29,8 +30,8 @@
                     v-for="(suggestion, index) in matches"
                     :key="index"
                     class="s-dropdown__item"
-                    :class="{ active: isActiveElement(index) }"
-                    @click="suggestionClick(suggestion)"
+                    :class="{ 's-active': isActiveElement(index) }"
+                    @click="suggestionSelect(suggestion)"
                 >
                     {{ suggestion[field] }}
                 </li>
@@ -103,8 +104,7 @@
             },
             // When enter pressed on the input
             onEnter() {
-                this.$emit("input", this.matches[this.current]);
-                this.isActive = false;
+                this.suggestionSelect(this.matches[this.current])
             },
             // When up pressed while suggestions are isActive
             onUp() {
@@ -129,7 +129,7 @@
                 return index === this.current;
             },
             // When one of the suggestion is clicked
-            suggestionClick(suggestion) {
+            suggestionSelect(suggestion) {
                 this.selected = suggestion;
                 this.newValue = suggestion[this.field];
                 this.$emit("select", suggestion);

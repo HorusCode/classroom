@@ -7,7 +7,7 @@ $label-weight: $weight-bold;
     font-size: $size-normal;
     font-weight: $label-weight;
     &:not(:last-child) {
-        margin-bottom: 0.3em;
+        margin-bottom: 0.5em;
     }
     &.s-small {
         font-size: $size-small;

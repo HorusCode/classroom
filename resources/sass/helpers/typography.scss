@@ -4,9 +4,8 @@ $alignments: ('center', 'justify' 'left', 'right');
     .s-text--#{$text-align} {
         text-align: #{$text-align} !important
     }
-}
 
-@each $text-align in $alignments {
+
     @include mob {
         .s-text-mob--#{$text-align}{
             text-align: #{$text-align} !important;
@@ -34,23 +33,33 @@ $alignments: ('center', 'justify' 'left', 'right');
 
     }
     @include desk-only {
-        .s-text-desk-only-#{$text-align} {
+        .s-text-desk-only--#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
     @include wide {
-        .s-text-wide-#{$text-align} {
+        .s-text-wide--#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
     @include wide-only {
-        .s-text-wide-only-#{$text-align} {
+        .s-text-wide-only--#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
     @include fullhd {
-        .s-text-fullhd-#{$text-align} {
+        .s-text-fullhd--#{$text-align} {
             text-align: #{$text-align} !important;
         }
     }
+
+
+}
+
+
+
+.s-text--title {
+    color: $text;
+    font-weight: $weight-semibold;
+    font-size: $size-large;
 }

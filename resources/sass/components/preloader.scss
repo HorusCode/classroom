@@ -1,7 +1,12 @@
 /* loader style */
+$loader-height: $body-line-height !default;
+
+
 .s-loader {
+    display: inline-block;
     color: transparent !important;
     pointer-events: none;
+    line-height: $body-line-height;
     @extend %loader;
     &::after, &::before {
         @include center(1em);

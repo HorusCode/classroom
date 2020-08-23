@@ -2,7 +2,7 @@
 
 .s-field {
     &:not(:last-child) {
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
     }
 
     &.s-with-tools {
@@ -113,7 +113,7 @@
         }
     }
     &--label {
-        .s-label {
+        &.s-label {
             font-size: inherit;
         }
         @include mob {

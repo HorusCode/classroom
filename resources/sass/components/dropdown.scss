@@ -14,11 +14,11 @@ $dropdown-item-hover-color: $scheme-invert !default;
 $dropdown-item-hover-background-color: $background !default;
 $dropdown-item-active-color: $link-invert !default;
 $dropdown-item-active-background-color: $link !default;
+$dropdown-item-line-height: $body-line-height !default;
 
 $dropdown-divider-background-color: $border-light !default;
 
 .s-dropdown {
-    display: inline-flex;
     position: relative;
     vertical-align: top;
     width: 100%;
@@ -65,9 +65,10 @@ $dropdown-divider-background-color: $border-light !default;
         color: $dropdown-item-color;
         display: block;
         font-size: 0.875rem;
-        line-height: 1.5;
+        line-height: $dropdown-item-line-height;
         padding: 0.375rem 1rem;
         position: relative;
+        cursor: pointer;
     }
 
 
