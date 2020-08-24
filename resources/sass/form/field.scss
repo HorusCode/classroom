@@ -113,7 +113,7 @@
         }
     }
     &--label {
-        &.s-label {
+        .s-label {
             font-size: inherit;
         }
         @include mob {

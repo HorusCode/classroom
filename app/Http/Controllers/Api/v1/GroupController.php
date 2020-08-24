@@ -65,8 +65,11 @@ class GroupController extends BaseController
 
 
     public function search(Request $request) {
-        $data = Group::where('group', 'LIKE', "%{$request->group}%")->get();
+        $data = Group::where('group', 'LIKE', "%{$request->group}%")->withCount('users')->get();
+
         return $this->sendResponse($data);
     }
+
+
 
 }

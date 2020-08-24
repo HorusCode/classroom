@@ -25,9 +25,10 @@ class StudentRequest extends FormRequest
     {
         return [
             'group' => 'required|integer',
-            'data' => 'required|array|min:1',
+            'data' => 'required|array|min:1|max:35',
             'data.*.email' => 'required|email|unique:users|max:255',
-            'data.*.login_code' => 'required|string|max:10'
+            'data.*.login_code' => 'required|string|max:10',
+            'data.*.phone' => 'required|email|unique:users|max:12'
         ];
     }
 
