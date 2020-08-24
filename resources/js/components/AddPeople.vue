@@ -55,7 +55,7 @@
                 <th>Телефон</th>
                 <th>E-mail</th>
                 <th>Ключ</th>
-                <th>Действия</th>
+                <th v-if="!statusData.status">Действия</th>
             </tr>
             </thead>
             <tbody>
@@ -64,6 +64,7 @@
                 <td>
                     <input
                         v-model="s.phone"
+                        v-if="!statusData.status"
                         type="text"
                         class="s-input"
                         :class="{'s-border--danger': $v.data.$each[i].phone.$invalid}"
@@ -72,13 +73,14 @@
                 <td>
                     <input
                         v-model="s.email"
+                        v-if="!statusData.status"
                         type="text"
                         class="s-input"
                         :class="{'s-border--danger': $v.data.$each[i].email.$invalid}"
                     />
                 </td>
                 <td>{{ s.login_code }}</td>
-                <td>
+                <td v-if="!statusData.status">
                     <button
                         type="button"
                         class="s-btn s-rounded s-outlined"
@@ -114,7 +116,7 @@
                 loading: false,
                 maxCount: 35,
                 openAlert: false,
-                statusData: {}
+                statusData: {},
             }
         },
         validations() {
@@ -127,20 +129,11 @@
 
                 data: {
                     maxLength: maxLength(this.actualCount),
-                    minLength: minLength(1),
+                    empty: (arr) => arr.length > 0 ,
                     $each: {
                         email: {
                             email,
                             isDuplicate(email) {
-                                /*let isWrong = true;
-                                this.data.forEach((valObject, index) => {
-                                    if (index !== valIndex) {
-                                        if (valObject.email === email) {
-                                            isWrong = false;
-                                        }
-                                    }
-                                });*/
-
                                 return this.data.filter(v => v.email === email).length === 1;
 
                             },
@@ -157,7 +150,6 @@
         },
         computed: {
             isDisableSend: function () {
-                // TODO: Create shorter code
                 return this.selected === null || this.selected.group !== this.groupName || this.$v.$invalid;
             },
             actualCount: function () {
@@ -212,7 +204,8 @@
                     group: this.selected.id,
                     data: this.data
                 })
-                    .then(({data}) => {
+                    .then(data => {
+                        console.log(data);
                         this.statusData = data;
                         this.openAlert = true;
                         delay(() => {
