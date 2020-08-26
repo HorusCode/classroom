@@ -1,5 +1,17 @@
 $alignments: ('center', 'justify' 'left', 'right');
 
+@mixin typography-size($target:'') {
+    @each $size in $sizes {
+        $i: index($sizes, $size);
+        .s-size--#{$i}#{if($target == '', '', '-' + $target)} {
+            font-size: $size !important;
+        }
+    }
+}
+
+@include typography-size();
+
+
 @each $text-align in $alignments {
     .s-text--#{$text-align} {
         text-align: #{$text-align} !important

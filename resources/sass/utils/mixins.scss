@@ -66,7 +66,7 @@
   }
 
   // Modifers
-  &.is-active {
+  &.s-active {
     span {
       &:nth-child(1) {
         transform: translateY(5px) rotate(45deg);
@@ -319,7 +319,7 @@
   }
 
   // Sizes
-  &.is-small {
+  &.s-small {
     height: 16px;
     max-height: 16px;
     max-width: 16px;
@@ -328,7 +328,7 @@
     width: 16px;
   }
 
-  &.is-medium {
+  &.s-medium {
     height: 24px;
     max-height: 24px;
     max-width: 24px;
@@ -337,7 +337,7 @@
     width: 24px;
   }
 
-  &.is-large {
+  &.s-large {
     height: 32px;
     max-height: 32px;
     max-width: 32px;

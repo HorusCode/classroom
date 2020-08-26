@@ -28,7 +28,7 @@ class StudentRequest extends FormRequest
             'data' => 'required|array|min:1|max:35',
             'data.*.email' => 'required|email|unique:users|max:255',
             'data.*.login_code' => 'required|string|max:10',
-            'data.*.phone' => 'required|email|unique:users|max:12'
+            'data.*.phone' => 'required|unique:users|max:12'
         ];
     }
 
@@ -36,6 +36,7 @@ class StudentRequest extends FormRequest
     {
         return [
             'data.*.email' => 'email address',
+            'data.*.phone' => 'phone',
         ];
     }
 }

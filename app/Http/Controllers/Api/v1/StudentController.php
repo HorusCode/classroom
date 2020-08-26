@@ -34,7 +34,7 @@ class StudentController extends BaseController
            $userIds[] = User::create($datum)->id;
         }
 
-        Group::find($request->group)->students()->attach($userIds);
+        Group::find($request->group)->users()->attach($userIds);
 
         return $this->sendResponse($userIds, 'Success student create!');
     }

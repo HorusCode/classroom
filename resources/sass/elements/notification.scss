@@ -19,7 +19,7 @@ $notification-padding-rtl: 1.25rem 1.5rem 1.25rem 2.5rem !default;
         padding: $notification-padding-rtl;
     }
 
-    a:not(.button):not(.dropdown-item) {
+    a:not(.s-btn):not(.s-dropdown--item) {
         color: currentColor;
         text-decoration: underline;
     }
@@ -37,14 +37,14 @@ $notification-padding-rtl: 1.25rem 1.5rem 1.25rem 2.5rem !default;
         background: transparent;
     }
 
-    & > .delete {
+    & > .s-delete {
         @include ltr-position(0.5rem);
         position: absolute;
         top: 0.5rem;
     }
 
-    .s-title,
-    .s-subtitle,
+    .s-text--title,
+    .s-text--subtitle,
     .s-content {
         color: currentColor;
     }

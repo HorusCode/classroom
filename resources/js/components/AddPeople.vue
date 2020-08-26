@@ -1,5 +1,20 @@
 <template>
     <section>
+        <transition>
+            <div
+                v-if="openAlert"
+                class="s-notification"
+                :class="[statusData.status === 200 ? 's-bg--success' : 's-bg--danger']"
+            >
+                <button class="s-delete" @click="openAlert = false"></button>
+                <h2 class="s-text--title s-size--6">{{statusData.data.message}}</h2>
+                <ul v-if="statusData.data.hasOwnProperty('errors')">
+                    <li v-for="(e, i) in statusData.data.errors" :key="i">{{e[0]}}</li>
+                </ul>
+            </div>
+        </transition>
+
+
         <div class="controls-field">
             <div class="s-field">
                 <autocomplete
@@ -36,9 +51,14 @@
                                 <i class="mdi mdi-delete-forever"></i>
                             </span>
                         </button>
-                        <button class="s-btn" @click="sendData" :disabled="isDisableSend">
+                        <button v-if="statusData.status !== 200" class="s-btn" @click="sendData" :disabled="isDisableSend">
                             <span class="s-icon">
                                 <i class="mdi mdi-account-edit-outline"></i>
+                            </span>
+                        </button>
+                        <button v-else class="s-btn" @click="refreshData">
+                            <span class="s-icon">
+                                <i class="mdi mdi-refresh"></i>
                             </span>
                         </button>
                     </div>
@@ -64,23 +84,25 @@
                 <td>
                     <input
                         v-model="s.phone"
-                        v-if="!statusData.status"
+                        v-if="statusData.status !== 200"
                         type="text"
                         class="s-input"
                         :class="{'s-border--danger': $v.data.$each[i].phone.$invalid}"
                     />
+                    <span v-else>{{ s.phone }}</span>
                 </td>
                 <td>
                     <input
                         v-model="s.email"
-                        v-if="!statusData.status"
+                        v-if="statusData.status !== 200"
                         type="text"
                         class="s-input"
                         :class="{'s-border--danger': $v.data.$each[i].email.$invalid}"
                     />
+                    <span v-else>{{ s.email }}</span>
                 </td>
                 <td>{{ s.login_code }}</td>
-                <td v-if="!statusData.status">
+                <td v-if="statusData.status !== 200">
                     <button
                         type="button"
                         class="s-btn s-rounded s-outlined"
@@ -135,14 +157,16 @@
                             email,
                             isDuplicate(email) {
                                 return this.data.filter(v => v.email === email).length === 1;
-
                             },
                             empty: val => val.length > 0,
                         },
                         phone: {
                             isPhone(value) {
                                 return /^((\+7|7|8)+([0-9]){10})$/.test(value);
-                            }
+                            },
+                            isDuplicate(phone) {
+                                return this.data.filter(v => v.phone === phone).length === 1;
+                            },
                         }
                     },
                 },
@@ -198,6 +222,9 @@
                     this.loading = false;
                 });
             },
+            refreshData: function () {
+                Object.assign(this.$data, this.$options.data.apply(this))
+            },
             sendData: function () {
                 this.statusData = {};
                 axios.post("/students", {
@@ -213,11 +240,9 @@
                         }, 10000)
                     })
                     .catch(data => {
-                        this.statusData = data.response.data;
+                        console.log(data.response);
+                        this.statusData = data.response;
                         this.openAlert = true;
-                        delay(() => {
-                            this.openAlert = false;
-                        }, 10000)
                     });
             }
         }
