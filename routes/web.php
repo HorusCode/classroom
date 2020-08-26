@@ -18,8 +18,9 @@ Route::view('/login','pages/auth/login')->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::view('/','pages/index')->name('home');
-    Route::group(['middleware' => 'role:teacher'], function () {
+    Route::group(['middleware' => 'role:teacher'], function () { // TODO: add admin role
         Route::view('/people/add', 'pages/people/add')->name('add_people');
+        Route::view('/people/show', 'pages/people/show')->name('show_people');
     });
 });
 
