@@ -34,7 +34,7 @@
                     </li>
                     <li class="s-submenu__item">
                         <a class="{{ $route === 'show_people' ? 's-active' : '' }}"
-                           href="">Просмотреть</a>
+                           href="{{route('show_people')}}">Просмотреть</a>
                     </li>
                 </ul>
             </li>
