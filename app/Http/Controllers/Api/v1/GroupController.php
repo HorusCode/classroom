@@ -64,12 +64,22 @@ class GroupController extends BaseController
     }
 
 
+    /**
+     * Search groups by group name field.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function search(Request $request) {
         $data = Group::where('group', 'LIKE', "%{$request->group}%")->withCount('users')->get();
-
         return $this->sendResponse($data);
     }
 
+
+    public function getStudents(Group $group)
+    {
+        return $this->sendResponse($group->users);
+    }
 
 
 }

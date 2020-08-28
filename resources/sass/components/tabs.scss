@@ -1,6 +1,7 @@
 $tabs-border-bottom-color: $border !default;
 $tabs-border-bottom-style: solid !default;
 $tabs-border-bottom-width: 1px !default;
+
 $tabs-link-color: $text !default;
 $tabs-link-hover-border-bottom-color: $text-strong !default;
 $tabs-link-hover-color: $text-strong !default;
@@ -26,7 +27,7 @@ $tabs-toggle-link-active-background-color: $link !default;
 $tabs-toggle-link-active-border-color: $link !default;
 $tabs-toggle-link-active-color: $link-invert !default;
 
-.tabs {
+.s-tabs {
     @extend %block;
     @include overflow-touch;
     @extend %unselectable;

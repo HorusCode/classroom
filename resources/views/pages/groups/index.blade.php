@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'Списки людей')
+@section('title', 'Группы')
 @section('content')
     <header class="s-content__header">
         <h1 class="s-text--title">@yield('title')</h1>
     </header>
     <div class="s-content__body">
-        <show-people></show-people>
+        <add-people></add-people>
     </div>
 @endsection

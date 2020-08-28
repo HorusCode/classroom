@@ -196,3 +196,7 @@ $table-striped-row-even-hover-background-color: $scheme-main-ter !default;
     overflow-y: hidden;
     max-width: 100%;
 }
+
+.s-table-wrapper {
+    position: relative;
+}

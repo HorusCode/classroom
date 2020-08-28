@@ -2,6 +2,32 @@
 $loader-height: $body-line-height !default;
 
 
+
+.s-loader-mask {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    align-items: center;
+    display: none;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 10;
+    background-color: transparentize($white-bis, 0.5);
+    .s-loader {
+        height: 3em;
+        width: 3em;
+        &::after, &::before {
+            @include center(3em);
+        }
+    }
+    &.s-active {
+        display: flex;
+    }
+}
+
+
 .s-loader {
     display: inline-block;
     color: transparent !important;

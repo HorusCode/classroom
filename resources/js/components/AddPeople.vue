@@ -232,7 +232,6 @@
                     data: this.data
                 })
                     .then(data => {
-                        console.log(data);
                         this.statusData = data;
                         this.openAlert = true;
                         delay(() => {
@@ -240,7 +239,6 @@
                         }, 10000)
                     })
                     .catch(data => {
-                        console.log(data.response);
                         this.statusData = data.response;
                         this.openAlert = true;
                     });

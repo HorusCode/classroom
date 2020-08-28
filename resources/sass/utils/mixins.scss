@@ -352,17 +352,8 @@
 }
 
 @mixin loader {
-  /*animation: spinAround 500ms infinite linear;
-  border: 2px solid $grey-lighter;
-  border-radius: $radius-rounded;
-  border-right-color: transparent;
-  border-top-color: transparent;
-  content: "";
-  display: block;
-  height: 1em;
-  position: relative;
-  width: 1em;*/
-
+    width: 1em;
+    height: 1em;
     &::before,
     &::after {
         content: "";
@@ -370,8 +361,8 @@
         position: absolute;
         border-radius: $radius-rounded;
         border: 4px solid $grey-lighter;
-        width: 1em;
-        height: 1em;
+        width: inherit;
+        height: inherit;
     }
 
     &::before {

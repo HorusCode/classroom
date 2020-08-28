@@ -39,7 +39,7 @@
                 </ul>
             </li>
             <li class="s-vertical-list__item">
-                <a type="button" class="s-vertical-list__title s-with-icon-left">
+                <a type="button" href="{{route('groups')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'groups' ? 's-active' : '' }}">
                     <span class="s-icon s-left">
                          <i class="mdi mdi-group"></i>
                     </span>

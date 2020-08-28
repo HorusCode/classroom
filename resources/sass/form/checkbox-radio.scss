@@ -1,0 +1,117 @@
+%checkbox-radio {
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    line-height: 1.25;
+    position: relative;
+
+    input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+        display: inline-block;
+        outline: none;
+        position: relative;
+        width: 21px;
+        height: 21px;
+        border: 1px solid $input-border-color;
+        border-radius: $radius;
+        vertical-align: top;
+        transition: background .1s ease;
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 7px;
+            width: 6px;
+            height: 10px;
+            opacity: 0;
+            transform: rotate(45deg) scale(0);
+            border-right: 2px solid white;
+            border-bottom: 2px solid white;
+            transition: all .3s ease;
+            transition-delay: .15s
+        }
+
+
+
+        &:disabled{
+            cursor: inherit;
+            background: $input-disabled-background-color;
+        }
+
+        &:checked, &.s-checked {
+            border-color: transparent;
+            background: $link;
+            animation: jelly .6s ease;
+
+            &:after {
+                opacity: 1;
+                transform: rotate(45deg) scale(1);
+            }
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 2px $input-focus-box-shadow-color;
+        }
+
+        &:hover {
+            &:not(:disabled) {
+                border-color: $link;
+            }
+
+        }
+    }
+
+
+    &:hover {
+        color: $input-hover-color;
+    }
+
+    &:not(:last-child) {
+        margin-right: $block-spacing;
+    }
+
+    &[disabled], &.s-disabled,
+    fieldset[disabled] & {
+        color: $input-disabled-text-color;
+        cursor: not-allowed;
+    }
+}
+
+.s-checkbox {
+    @extend %checkbox-radio;
+}
+
+.s-radio {
+    @extend %checkbox-radio;
+
+    & + .s-radio {
+        @include ltr-property("margin", 0.5em, false);
+    }
+}
+
+@keyframes jelly {
+    from {
+        transform: scale(1, 1);
+    }
+    30% {
+        transform: scale(1.25, 0.75);
+    }
+    40% {
+        transform: scale(0.75, 1.25);
+    }
+    50% {
+        transform: scale(1.15, 0.85);
+    }
+    65% {
+        transform: scale(.95, 1.05);
+    }
+    75% {
+        transform: scale(1.05, .95);
+    }
+    to {
+        transform: scale(1, 1);
+    }
+}
