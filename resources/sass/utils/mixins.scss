@@ -352,8 +352,7 @@
 }
 
 @mixin loader {
-    width: 1em;
-    height: 1em;
+
     &::before,
     &::after {
         content: "";
@@ -361,8 +360,8 @@
         position: absolute;
         border-radius: $radius-rounded;
         border: 4px solid $grey-lighter;
-        width: inherit;
-        height: inherit;
+        width: 1em;
+        height: 1em;
     }
 
     &::before {

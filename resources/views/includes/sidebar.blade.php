@@ -71,7 +71,7 @@
     <!-- End content -->
     <!-- Footer -->
     <footer class="s-sidebar__footer">
-        <a class="s-btn s-btn--primary">
+        <a class="s-btn s-btn--primary" href="{{ route('logout')  }}">
             Logout
         </a>
     </footer>

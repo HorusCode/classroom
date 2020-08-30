@@ -15,7 +15,8 @@ class GroupController extends BaseController
      */
     public function index()
     {
-        //
+        $data = Group::withCount('users')->get();
+        return $this->sendResponse($data);
     }
 
     /**

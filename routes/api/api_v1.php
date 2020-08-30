@@ -8,6 +8,7 @@ Route::namespace('Api\v1')->group(function () {
      });
     Route::group(['middleware' => 'auth:api'], function () {
         Route::apiResource('/students', 'StudentController');
+        Route::apiResource('/groups', 'GroupController');
 
         /*
          * Search routes.

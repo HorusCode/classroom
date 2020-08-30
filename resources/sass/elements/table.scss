@@ -75,7 +75,7 @@ $table-striped-row-even-hover-background-color: $scheme-main-ter !default;
     }
 
     tr {
-        &.is-selected {
+        &.s-selected {
             background-color: $table-row-active-background-color;
             color: $table-row-active-color;
 
@@ -89,6 +89,9 @@ $table-striped-row-even-hover-background-color: $scheme-main-ter !default;
                 border-color: $table-row-active-color;
                 color: currentColor;
             }
+        }
+        &.s-table__field {
+            background-color: transparentize($grey-lightest, 0.5);
         }
     }
 
@@ -170,6 +173,8 @@ $table-striped-row-even-hover-background-color: $scheme-main-ter !default;
             }
         }
     }
+
+
 
     &.s-narrow {
         td,

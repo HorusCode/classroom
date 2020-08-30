@@ -5,6 +5,6 @@
         <h1 class="s-text--title">@yield('title')</h1>
     </header>
     <div class="s-content__body">
-        <add-people></add-people>
+        <groups></groups>
     </div>
 @endsection
