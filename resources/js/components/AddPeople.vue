@@ -7,7 +7,7 @@
                 :class="[statusData.status === 200 ? 's-bg--success' : 's-bg--danger']"
             >
                 <button class="s-delete" @click="openAlert = false"></button>
-                <h2 class="s-text--title s-size--6">{{statusData.data.message}}</h2>
+                <h2 class="s-text--title s-size--6">{{ statusData.data.message }}</h2>
                 <ul v-if="statusData.data.hasOwnProperty('errors')">
                     <li v-for="(e, i) in statusData.data.errors" :key="i">{{e[0]}}</li>
                 </ul>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="s-control">
                     <div class="s-btn-group">
-                        <button class="s-btn" @click="generatePeople" :disabled="$v.count.$invalid">
+                        <button class="s-btn" @click="generatePeople" :disabled="$v.count.$invalid || statusData.status === 200">
                             <span class="s-icon">
                                 <i class="mdi mdi-plus"></i>
                             </span>
@@ -226,6 +226,7 @@
                 Object.assign(this.$data, this.$options.data.apply(this))
             },
             sendData: function () {
+                this.openAlert = false;
                 this.statusData = {};
                 axios.post("/students", {
                     group: this.selected.id,

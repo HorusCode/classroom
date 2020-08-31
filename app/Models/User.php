@@ -13,7 +13,7 @@ class User extends Authenticatable
     use Notifiable, HasRolesAndPermissions, HasApiTokens;
 
 
-    protected $guarded = ['id', ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for arrays.

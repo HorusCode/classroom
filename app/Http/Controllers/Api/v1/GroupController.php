@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Api\BaseController;
+use App\Http\Requests\GroupRequest;
 use App\Models\Group;
 use Illuminate\Http\Request;
 
@@ -22,12 +23,17 @@ class GroupController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param GroupRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(GroupRequest $request)
     {
-        //
+        $data = [];
+        foreach ($request->groups as $group) {
+            $data[] = array_merge(Group::create($group)->toArray(), ['users_count' => 0]);
+
+        }
+        return $this->sendResponse($data, 'Groups created!');
     }
 
     /**
@@ -44,7 +50,7 @@ class GroupController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -57,11 +63,11 @@ class GroupController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        return Group::destroy($id) ? $this->sendResponse('', 'Group deleted!') : $this->sendError('Group not found!');
     }
 
 

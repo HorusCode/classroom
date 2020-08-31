@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\StudentRequest;
-use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -65,11 +64,12 @@ class StudentController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        return User::find($id)->group()->detach([$request->group]) ? $this->sendResponse('', 'People remove in group!') : $this->sendError('People not found!');
     }
 }

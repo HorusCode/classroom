@@ -51,7 +51,7 @@
                         <button
                             type="button"
                             class="s-btn s-rounded s-outlined"
-                            @click="removePeople(i)"
+                            @click="removePeople(s.id, i)"
                         >
                             <span class="mdi mdi-delete-forever"/>
                         </button>
@@ -95,7 +95,6 @@
                 selected: null,
                 groups: [],
                 loading: false,
-                openAlert: false,
                 statusData: {},
             }
         },
@@ -107,9 +106,6 @@
             }
         },
         computed: {
-            isDisableSend: function () {
-                return this.selected === null || this.selected.group !== this.groupName;
-            },
             filteredItems: function () {
                 return this.selectedItems;
             },
@@ -123,8 +119,12 @@
             }
         },
         methods: {
-            removePeople: function (idx) {
-                this.data.splice(idx, 1);
+            removePeople: function (id, idx) {
+                axios.delete(`/students/${id}?group=${this.selected.id}`).then(() => {
+                    this.data.splice(idx, 1);
+                }).catch(({response}) => {
+                    this.statusData = response;
+                })
             },
             searchDebounce: debounce(function (value) {
                 this.search(value);

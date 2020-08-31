@@ -7,6 +7,11 @@ Route::namespace('Api\v1')->group(function () {
         Route::post('/login', 'LoginController@login');
      });
     Route::group(['middleware' => 'auth:api'], function () {
+
+
+        /*
+         * ApiResource routes
+         * */
         Route::apiResource('/students', 'StudentController');
         Route::apiResource('/groups', 'GroupController');
 

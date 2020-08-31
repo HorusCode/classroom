@@ -49,20 +49,13 @@
 
             </li>
             <li class="s-vertical-list__item">
-                <a type="button" class="s-vertical-list__title s-trigger s-with-icon-double">
+                <a type="button" href="{{route('courses')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'courses' ? 's-active' : '' }}">
                     <span class="s-icon s-left">
                          <i class="mdi mdi-book-multiple"></i>
                     </span>
                     <span class="s-vertical-list__text">Курсы</span>
-                    <span class="s-icon s-right">
-                         <i class="mdi mdi-chevron-up"></i>
-                    </span>
                 </a>
 
-                <ul class="s-submenu">
-                    <li class="s-submenu__item"><a href="">Создать</a></li>
-                    <li class="s-submenu__item"><a href="">Просмотреть</a></li>
-                </ul>
             </li>
 
 

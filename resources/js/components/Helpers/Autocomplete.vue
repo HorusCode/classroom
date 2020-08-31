@@ -67,6 +67,11 @@
                 selected: null,
             };
         },
+        watch: {
+            value: function (val) {
+                this.newValue = val;
+            }
+        },
         computed: {
             // Filtering the suggestion based on the input
             matches() {

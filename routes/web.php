@@ -13,7 +13,7 @@
 */
 
 Route::post('auth/login', 'Api\v1\LoginController@login');
-
+Route::get('/logout', 'Api\v1\LoginController@logout')->name('logout');
 Route::view('/login','pages/auth/login')->name('login');
 
 Route::middleware('auth')->group(function () {
