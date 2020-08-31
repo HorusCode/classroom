@@ -181,6 +181,4 @@
     }
 </script>
 
-<style scoped>
 
-</style>

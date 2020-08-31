@@ -10,8 +10,9 @@
 @mixin col-props($i, $columns, $gutter) {
     box-sizing: border-box;
     width: col-width($i, $columns);
-  /*  padding-left: $gutter/2;
-    padding-right: $gutter/2;*/
+    padding-left: $gutter;
+    padding-right: $gutter;
+    padding-top: $gutter;
 }
 
 @mixin columns-loop($name, $columns, $gutter) {
@@ -31,12 +32,20 @@
     box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
-    /*margin-left: auto;
-   margin-right: auto;*/
+    margin-left: -$default-columns-gap;
+    margin-right: -$default-columns-gap;
+    margin-top: -$default-columns-gap;
+    &.s-no-gap {
+        margin: 0;
+        & > div {
+            padding: 0;
+        }
+
+    }
 }
 
 .s-col {
-    @include columns-loop(desk, $default-columns, $gap);
+    @include columns-loop(desk, $default-columns, $default-columns-gap);
 
     @each $type, $var in $grid-breakpoints {
         $columns-count: $default-columns;
@@ -46,7 +55,7 @@
         }
 
         @media screen and (max-width: $var) {
-            @include columns-loop($type, $columns-count, $gap);
+            @include columns-loop($type, $columns-count, $default-columns-gap);
         }
     }
 }

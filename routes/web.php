@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
         Route::view('/people/add', 'pages/people/add')->name('add_people');
         Route::view('/people/show', 'pages/people/show')->name('show_people');
         Route::view('/groups', 'pages/groups/index')->name('groups');
+        Route::view('/courses', 'pages/courses/index')->name('courses');
     });
 });
 

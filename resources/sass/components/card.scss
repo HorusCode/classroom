@@ -3,6 +3,7 @@
 $card-text-color: $text !default;
 $card-background-color: $scheme-main !default;
 $card-shadow: 0 0.5em 1em -0.125em rgba($scheme-invert, 0.13), 0 0px 0 1px rgba($scheme-invert, 0.02) !default;
+$card-shadow-hover: 0 0.5em 1.5em 1px rgba($scheme-invert, 0.2), 0 0px 0 1px rgba($scheme-invert, 0.02) !default;
 
 //Header
 
@@ -31,6 +32,7 @@ $card-media-margin: $block-spacing !default;
     position: relative;
 
     &__media {
+        display: block;
         position: relative;
         height: 100%;
         img {
@@ -53,6 +55,7 @@ $card-media-margin: $block-spacing !default;
         flex-grow: 1;
         font-weight: $card-header-text-weight;
         padding: $card-header-padding;
+
         &.text-center {
             justify-content: center;
         }
@@ -69,5 +72,27 @@ $card-media-margin: $block-spacing !default;
         border-top: $card-footer-border-top;
         align-items: stretch;
         display: flex;
+
+        .s-card-footer__item {
+            align-items: center;
+            display: flex;
+            flex-basis: 0;
+            flex-grow: 1;
+            flex-shrink: 0;
+            justify-content: center;
+            padding: $card-footer-padding;
+
+            &:not(:last-child) {
+                @include ltr-property("border", $card-footer-border-top);
+            }
+        }
     }
+
+    a > & {
+        &:hover, &.s-hovered {
+            transition: box-shadow .2s ease-in-out;
+            box-shadow: $card-shadow-hover;
+        }
+    }
+
 }

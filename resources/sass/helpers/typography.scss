@@ -68,7 +68,9 @@ $alignments: ('center', 'justify' 'left', 'right');
 
 }
 
-
+.s-text--bold {
+    font-weight: $weight-bold;
+}
 
 .s-text--title {
     color: $text;

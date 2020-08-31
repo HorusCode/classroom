@@ -16,7 +16,7 @@
 <body class="s-bg-lnr-gradient--primary">
 <div id="app" class="s-grid-login">
     <div class="s-card login-card">
-        <div class="s-row h-100 no-wrap">
+        <div class="s-row h-100 no-wrap s-no-gap">
             <div class="s-col-desk-7">
                 <div class="s-card__media">
                     <div class="s-image">
