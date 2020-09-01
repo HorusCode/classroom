@@ -18,10 +18,10 @@
     <div class="s-card login-card">
         <div class="s-row h-100 no-wrap s-no-gap">
             <div class="s-col-desk-7">
-                <div class="s-card__media">
-                    <div class="s-image">
+                <div class="s-card__media h-100">
+                    <figure class="s-image">
                         <img src="{{ asset('images/login-image.jpg') }}" alt="Tetra">
-                    </div>
+                    </figure>
                 </div>
             </div>
             <div class="s-col-desk-5">

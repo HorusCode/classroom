@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\BaseController;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
-class CourseController extends Controller
+class CourseController extends BaseController
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        return $this->sendResponse(Course::all());
     }
 
     /**

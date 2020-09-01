@@ -1,5 +1,16 @@
 <template>
     <section>
+        <div class="controls-field">
+           <div class="s-field s-field--grouped">
+                <div class="s-control">
+                    <button class="s-btn s-btn--info">
+                        Добавить
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
         <div class="s-row">
             <div class="s-col-desk-3" v-for="item in data" :key="item.id">
                 <a href="">
@@ -10,7 +21,7 @@
                             </figure>
                         </div>
                         <div class="s-card__content">
-                            <h2 class="s-text--center s-text--bold">Математика</h2>
+                            <h2 class="s-text--center s-text--bold">{{item.course}}</h2>
                         </div>
                         <div class="s-card__footer">
                             <a class="s-card-footer__item">
@@ -52,7 +63,7 @@
         methods: {
             getData: function () {
                 axios.get('/courses').then(({data}) => {
-                    console.log(data);
+                    this.data = data.data;
                 }).catch(({response}) => {
                     console.log(response);
                 })
