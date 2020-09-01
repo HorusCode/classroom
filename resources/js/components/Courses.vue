@@ -1,9 +1,9 @@
 <template>
     <section>
         <div class="controls-field">
-           <div class="s-field s-field--grouped">
+            <div class="s-field s-field--grouped">
                 <div class="s-control">
-                    <button class="s-btn s-btn--info">
+                    <button class="s-btn s-btn--info" @click="isCardModalActive = true">
                         Добавить
                     </button>
                 </div>
@@ -45,16 +45,37 @@
 
             </div>
         </div>
+        <modal v-model="isCardModalActive" :width="640">
+            <div class="s-card">
+                <div class="s-card__media">
+                    <figure class="s-image">
+                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Image">
+                    </figure>
+                </div>
+                <div class="s-card__content">
 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                    <a>#css</a> <a>#responsive</a>
+                    <br>
+                    <small>11:09 PM - 1 Jan 2016</small>
+
+                </div>
+            </div>
+        </modal>
     </section>
 </template>
 
 <script>
+    import Modal from "./Helpers/Modal";
+
     export default {
         name: "Courses",
+        components: {Modal},
         data() {
             return {
-                data: []
+                data: [],
+                isCardModalActive: false
             }
         },
         mounted() {
