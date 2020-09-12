@@ -338,7 +338,7 @@ $button-static-border-color: $border !default;
         opacity: $button-disabled-opacity;
     }
 
-    &.s-fullwidth {
+    &.s-expanded {
         display: flex;
         width: 100%;
     }

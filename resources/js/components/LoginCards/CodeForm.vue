@@ -2,14 +2,14 @@
     <div class="s-card">
         <div class="s-card__content">
             <header class="s-card__header">
-                <h3 class="text--center s-mgy-3">
+                <h3 class="s-text--center s-mgy-3">
                     Write
-                    <span class="text--primary">code</span>
+                    <span class="s-text--primary">code</span>
                     your account
                 </h3>
             </header>
             <form @submit.prevent="login">
-                               <fieldset>
+                <fieldset>
                     <div class="s-field">
                         <label class="s-label">Code</label>
                         <div class="s-control s-control__icons-right">

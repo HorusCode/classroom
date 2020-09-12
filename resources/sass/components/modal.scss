@@ -54,7 +54,7 @@ $modal-card-body-padding: 20px !default;
         position: relative;
         width: 100%;
         // Responsiveness
-        + tablet {
+        @include tab {
             margin: 0 auto;
             max-height: calc(100vh - #{$modal-content-spacing-tablet});
             width: $modal-content-width;
@@ -68,7 +68,7 @@ $modal-card-body-padding: 20px !default;
         overflow: hidden;
         -ms-overflow-y: visible;
 
-        &-head, &-foot {
+        &-header, &-footer {
             align-items: center;
             background-color: $modal-card-head-background-color;
             display: flex;
@@ -78,7 +78,7 @@ $modal-card-body-padding: 20px !default;
             position: relative;
         }
 
-        &-head {
+        &-header {
             border-bottom: $modal-card-head-border-bottom;
             border-top-left-radius: $modal-card-head-radius;
             border-top-right-radius: $modal-card-head-radius;
@@ -92,7 +92,7 @@ $modal-card-body-padding: 20px !default;
             line-height: $modal-card-title-line-height;
         }
 
-        &-foot {
+        &-footer {
             border-bottom-left-radius: $modal-card-foot-radius;
             border-bottom-right-radius: $modal-card-foot-radius;
             border-top: $modal-card-foot-border-top;

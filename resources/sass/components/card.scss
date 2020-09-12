@@ -50,12 +50,12 @@ $card-media-margin: $block-spacing !default;
     &__title {
         align-items: center;
         color: $card-header-text-color;
-        /*display: flex;*/
+        display: flex;
         flex-grow: 1;
         font-weight: $card-header-text-weight;
         padding: $card-header-padding;
-
-        &.text-center {
+        overflow-wrap: anywhere;
+        &.s-text--center {
             justify-content: center;
         }
     }

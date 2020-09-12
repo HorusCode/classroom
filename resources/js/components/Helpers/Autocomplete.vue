@@ -8,7 +8,9 @@
             type="text"
             v-model="newValue"
             v-bind="$attrs"
+            :class="type"
             @input="onInput"
+            @focus="onFocus"
             @blur="isActive = isActiveSuggestion"
             @keydown.enter="onEnter"
             @keydown.down="onDown"
@@ -56,8 +58,16 @@
               type: String,
               default: 'value'
             },
+            openOnFocus: {
+                type: Boolean,
+                default: false
+            },
             customFilter: Function,
-            value: [Number, String]
+            type: String,
+            value: {
+                type: [Number, String],
+                default: ''
+            }
         },
         data() {
             return {
@@ -98,7 +108,10 @@
             document.removeEventListener("click", this.handleClickOutside);
         },
         methods: {
-
+            onFocus(event) {
+                this.isActive = this.openOnFocus;
+                this.$emit("focus", event);
+            },
             onInput(event) {
                 this.newValue = event.target.value;
                 if (!this.isActive) {

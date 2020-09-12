@@ -1,0 +1,17 @@
+// Zoom Out
+.zoom-out-enter-active,
+.zoom-out-leave-active {
+    transition: opacity $speed $easing;
+    .animation-content,
+    .animation-content {
+        transition: transform $speed $easing;
+    }
+}
+.zoom-out-enter,
+.zoom-out-leave-active {
+    opacity: 0;
+    .animation-content,
+    .animation-content {
+        transform: scale(1.05);
+    }
+}

@@ -235,11 +235,6 @@
                 document.addEventListener('keyup', this.keyPress)
             }
         },
-        beforeMount() {
-            // Insert the Modal component in body tag
-            // only if it's programmatic
-            this.programmatic && document.body.appendChild(this.$el)
-        },
         mounted() {
             if (this.isActive) this.handleScroll()
         },

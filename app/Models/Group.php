@@ -16,4 +16,9 @@ class Group extends Model
         return $this->belongsToMany(User::class, 'students')->withTimestamps();
     }
 
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class)->withTimestamps();
+    }
+
 }
