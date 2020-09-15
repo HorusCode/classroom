@@ -32,6 +32,13 @@
     align-items: center;
 }
 
+//Courses
+.card-content-title {
+    font-weight: $weight-semibold;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
 
 //Table
 .row-wrapper {

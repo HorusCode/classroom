@@ -3,7 +3,7 @@
         <div class="controls-field">
             <div class="s-field s-field--grouped">
                 <div class="s-control">
-                    <button class="s-btn s-btn--info" @click="isCardModalActive = true">
+                    <button class="s-btn s-btn--info" @click="createDataModal = true">
                         Добавить
                     </button>
                 </div>
@@ -14,7 +14,7 @@
         <hr>
         <div class="s-row">
             <div class="s-col-desk-3" v-for="(item, i) in data" :key="item.id">
-                <a href="">
+                <a :href="`/courses/${item.id}`">
                     <div class="s-card">
                         <div class="s-card__media">
                             <figure class="s-image">
@@ -22,7 +22,7 @@
                             </figure>
                         </div>
                         <div class="s-card__content">
-                            <h2 class="s-card__title s-text--center">{{item.course}}</h2>
+                            <h2 class="card-content-title">{{item.course}}</h2>
                         </div>
                         <div class="s-card__footer">
                             <a class="s-card-footer__item" @click.prevent="removeData(item, i)">
@@ -35,7 +35,7 @@
                                     <i class="mdi mdi-stop"></i>
                                 </span>
                             </a>
-                            <a class="s-card-footer__item" @click="editData(item)">
+                            <a class="s-card-footer__item" @click.prevent="editData(item, i)">
                                   <span class="s-icon">
                                     <i class="mdi mdi-rename-box"></i>
                                 </span>
@@ -46,7 +46,7 @@
 
             </div>
         </div>
-        <modal v-model="createDataModal" :width="320">
+        <modal v-model="createDataModal" :can-cancel="['escape', 'x']" :width="320">
             <div class="s-modal__card" style="width: auto">
                 <header class="s-modal__card-header">
                     <div class="s-modal__card-title">
@@ -72,7 +72,7 @@
                             open-on-focus
                             field="group"
                             @focus="getGroups"
-                            @select="option => field = option"
+                            @select="option => field.id = option.id"
                         ></autocomplete>
                         <button class="s-btn" @click="fields.splice(i, 1)">
                             <span class="s-icon">
@@ -85,14 +85,16 @@
                 <footer class="s-modal__card-footer">
                     <div class="s-field">
                         <div class="s-control">
-                            <button class="s-btn s-rounded s-btn--primary w-1" :disabled="$v.$invalid" @click="sendData">Создать</button>
+                            <button class="s-btn s-rounded s-btn--primary w-1" :disabled="$v.$invalid"
+                                    @click="sendData">Создать
+                            </button>
                         </div>
                     </div>
                 </footer>
             </div>
 
         </modal>
-        <modal v-model="editDataModal" :width="320">
+        <modal v-model="editDataModal" :can-cancel="['escape', 'x']" :width="320">
             <div class="s-modal__card" style="width: auto">
                 <header class="s-modal__card-header">
                     <div class="s-modal__card-title">
@@ -112,7 +114,9 @@
                 <footer class="s-modal__card-footer">
                     <div class="s-field">
                         <div class="s-control">
-                            <button class="s-btn s-rounded s-btn--primary w-1" :disabled="$v.$invalid" @click="updateData">Обновить</button>
+                            <button class="s-btn s-rounded s-btn--primary w-1" :disabled="$v.courseName.$invalid"
+                                    @click="updateData">Обновить
+                            </button>
                         </div>
                     </div>
                 </footer>
@@ -124,7 +128,7 @@
 
 <script>
     import Modal from "./Helpers/Modal";
-    import {required, minLength} from "vuelidate/lib/validators";
+    import {required,minLength} from "vuelidate/lib/validators";
 
     export default {
         name: "Courses",
@@ -138,13 +142,14 @@
                 loading: false,
                 fields: [{id: ''}],
                 courseName: '',
+                editableDataId: null,
             }
         },
         validations() {
             return {
                 courseName: {
-                    required,
-                    minLength: minLength(5)
+                    minLength: minLength(5),
+                    required
                 },
                 fields: {
                     $each: {
@@ -155,6 +160,7 @@
                             required
                         }
                     },
+                    required
                 }
             }
         },
@@ -162,11 +168,11 @@
             this.getData();
         },
         methods: {
-            removeData: function(obj, idx) {
-              axios.delete(`/courses/${obj.id}`).then(({data}) => {
-                  this.data.splice(idx, 1);
-                  // TODO: Create open status message
-              })
+            removeData: function (obj, idx) {
+                axios.delete(`/courses/${obj.id}`).then(({data}) => {
+                    this.data.splice(idx, 1);
+                    // TODO: Create open status message
+                })
             },
             getData: function () {
                 axios.get('/courses').then(({data}) => {
@@ -175,25 +181,34 @@
                     console.log(response);
                 })
             },
-            editData: function(obj){
+            editData: function (obj, idx) {
                 this.editDataModal = true;
                 this.courseName = obj.course;
+                this.editableDataId = obj.id;
             },
-            sendData: function()
-            {
-              axios.post('/courses', {
-                  course: this.courseName,
-                  groups: this.fields.map(obj => obj.id)
-              }).then(({data}) => {
-                  this.courseName = '';
-                  this.fields = [{id: ''}];
-                  this.data.push(data.data);
-              }).finally(() => {
-                  this.createDataModal = false;
-              });
+            sendData: function () {
+                axios.post('/courses', {
+                    course: this.courseName,
+                    groups: this.fields.map(obj => obj.id)
+                }).then(({data}) => {
+                    this.courseName = '';
+                    this.fields = [{id: ''}];
+                    this.data.push(data.data);
+                    // TODO: Create open status message
+                }).finally(() => {
+                    this.createDataModal = false;
+                });
             },
-            updateData: function() {
-
+            updateData: function () {
+                axios.post(`/courses/${this.editableDataId}`, {
+                    '_method': 'PUT',
+                    'course': this.courseName
+                }).then(({data}) => {
+                    // TODO: Create open status message
+                    const idx = this.data.findIndex(obj => obj.id === data.data.id);
+                    this.data.splice(idx, 1, data.data);
+                    this.editDataModal = false;
+                });
             },
             selectGroup: function (obj, idx) {
                 if (obj) {

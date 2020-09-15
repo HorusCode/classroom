@@ -47,24 +47,25 @@ class CourseController extends BaseController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Course $course
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(Course $course)
     {
-        //
+        return $this->sendResponse($course->load('groups'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CourseRequest $request
+     * @param Course $course
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(CourseRequest $request, Course $course)
     {
-        //
+        $course->update(['course'=>$request->course]);
+        return $this->sendResponse($course);
     }
 
     /**
@@ -76,5 +77,15 @@ class CourseController extends BaseController
     public function destroy($id)
     {
         return Course::destroy($id) ? $this->sendResponse('', 'Course deleted!') : $this->sendError('Course not found!');
+    }
+
+    public function detachGroups(CourseRequest $request, Course $course)
+    {
+        return $this->sendResponse($course->groups()->detach($request->groups));
+    }
+
+    public function attachGroups(CourseRequest $request, Course $course)
+    {
+        return $this->sendResponse($course->groups()->syncWithoutDetaching($request->groups));
     }
 }

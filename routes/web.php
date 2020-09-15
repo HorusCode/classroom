@@ -18,11 +18,15 @@ Route::view('/login','pages/auth/login')->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::view('/','pages/index')->name('home');
-    Route::group(['middleware' => 'role:teacher'], function () { // TODO: add admin role
-        Route::view('/people/add', 'pages/people/add')->name('add_people');
-        Route::view('/people/show', 'pages/people/show')->name('show_people');
-        Route::view('/groups', 'pages/groups/index')->name('groups');
-        Route::view('/courses', 'pages/courses/index')->name('courses');
+    Route::group(['middleware' => 'role:teacher', 'as' => 'web.'], function () { // TODO: add admin role
+        Route::view('/people/create', 'pages/people/create')->name('people.create');
+        Route::view('/people', 'pages/people/index')->name('people.index');
+
+        Route::view('/groups', 'pages/groups/index')->name('groups.index');
+
+        Route::view('/courses', 'pages/courses/index')->name('courses.index');
+
+        Route::view('/courses/{id}', 'pages/courses/show')->name('courses.show')->name('courses.detach');
     });
 });
 

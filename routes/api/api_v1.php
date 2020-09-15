@@ -26,6 +26,7 @@ Route::namespace('Api\v1')->group(function () {
 
 
         Route::get('groups/students/{group}', 'GroupController@getStudents');
-
+        Route::post('courses/{course}/detach', 'CourseController@detachGroups');
+        Route::post('courses/{course}/attach', 'CourseController@attachGroups');
     });
 });

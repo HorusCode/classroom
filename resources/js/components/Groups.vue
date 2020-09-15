@@ -80,39 +80,15 @@
 <script>
 
     import {search} from '../utils/mixins'
+    import TableUselessRow from "./Helpers/TableUselessRow";
 
-    let TableRow = {
-        props: {
-            data: {
-                type: Array,
-                default: []
-            }
-        },
-        template: `
-            <tr class="s-table__field">
-                <td colspan="4">
-                    <div class="row-wrapper s-center">
-                        <div class="s-btn-group">
-                            <button class="s-btn s-btn--primary s-light" @click="$emit('add-new')">Добавить</button>
-                            <button class="s-btn s-btn--success" @click="$emit('save')" v-if="data.length > 0" :disabled="fieldNotEmpty">Сохранить</button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        `,
-        computed: {
-            fieldNotEmpty: function () {
-                return this.data.some((obj) => obj.group.trim() === '')
-            }
-        }
-    };
 
 
     export default {
         name: "Groups",
         mixins: [search],
         components: {
-          'TableUselessRow': TableRow
+          TableUselessRow
         },
         data() {
             return {

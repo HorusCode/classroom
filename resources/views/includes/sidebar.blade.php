@@ -29,17 +29,17 @@
                 </a>
                 <ul class="s-submenu">
                     <li class="s-submenu__item">
-                        <a class="{{ $route === 'add_people' ? 's-active' : ''}}"
-                           href="{{route('add_people')}}">Создать</a>
+                        <a class="{{ $route === 'web.people.create' ? 's-active' : ''}}"
+                           href="{{route('web.people.create')}}">Создать</a>
                     </li>
                     <li class="s-submenu__item">
-                        <a class="{{ $route === 'show_people' ? 's-active' : '' }}"
-                           href="{{route('show_people')}}">Просмотреть</a>
+                        <a class="{{ $route === 'web.people.index' ? 's-active' : '' }}"
+                           href="{{route('web.people.index')}}">Просмотреть</a>
                     </li>
                 </ul>
             </li>
             <li class="s-vertical-list__item">
-                <a type="button" href="{{route('groups')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'groups' ? 's-active' : '' }}">
+                <a type="button" href="{{route('web.groups.index')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'web.groups.index' ? 's-active' : '' }}">
                     <span class="s-icon s-left">
                          <i class="mdi mdi-group"></i>
                     </span>
@@ -49,16 +49,45 @@
 
             </li>
             <li class="s-vertical-list__item">
-                <a type="button" href="{{route('courses')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'courses' ? 's-active' : '' }}">
+                <a type="button" href="{{route('web.courses.index')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'web.courses.index' ? 's-active' : '' }}">
                     <span class="s-icon s-left">
                          <i class="mdi mdi-book-multiple"></i>
                     </span>
                     <span class="s-vertical-list__text">Курсы</span>
                 </a>
-
             </li>
-
-
+            <li class="s-vertical-list__item">
+                <a type="button" href="{{route('web.courses.index')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'web.courses.index' ? 's-active' : '' }}">
+                    <span class="s-icon s-left">
+                         <i class="mdi mdi-pencil-box"></i>
+                    </span>
+                    <span class="s-vertical-list__text">Тесты</span>
+                </a>
+            </li>
+            <li class="s-vertical-list__item">
+                <a type="button" href="{{route('web.courses.index')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'web.courses.index' ? 's-active' : '' }}">
+                    <span class="s-icon s-left">
+                         <i class="mdi mdi-calendar"></i>
+                    </span>
+                    <span class="s-vertical-list__text">Календарь</span>
+                </a>
+            </li>
+            <li class="s-vertical-list__item">
+                <a type="button" href="{{route('web.courses.index')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'web.courses.index' ? 's-active' : '' }}">
+                    <span class="s-icon s-left">
+                         <i class="mdi mdi-file-cloud"></i>
+                    </span>
+                    <span class="s-vertical-list__text">Файловый менеджер</span>
+                </a>
+            </li>
+            <li class="s-vertical-list__item">
+                <a type="button" href="{{route('web.courses.index')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'web.courses.index' ? 's-active' : '' }}">
+                    <span class="s-icon s-left">
+                         <i class="mdi mdi-chart-arc"></i>
+                    </span>
+                    <span class="s-vertical-list__text">Статистика</span>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- End content -->

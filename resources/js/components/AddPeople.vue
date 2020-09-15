@@ -30,7 +30,8 @@
             <div class="s-field s-field--grouped">
                 <div class="composed-label">
                     <label class="s-label">Добавить:</label>
-                    <h2 class="subtitle" :class="{'s-text--danger': !$v.data.maxLength}">{{ data.length }} / {{ actualCount }}</h2>
+                    <h2 class="subtitle" :class="{'s-text--danger': !$v.data.maxLength}">{{ data.length }} / {{
+                        actualCount }}</h2>
                 </div>
                 <div class="s-control s-mgr-2">
                     <input type="text"
@@ -41,7 +42,8 @@
                 </div>
                 <div class="s-control">
                     <div class="s-btn-group">
-                        <button class="s-btn" @click="generatePeople" :disabled="$v.count.$invalid || statusData.status === 200">
+                        <button class="s-btn" @click="generatePeople"
+                                :disabled="$v.count.$invalid || statusData.status === 200">
                             <span class="s-icon">
                                 <i class="mdi mdi-plus"></i>
                             </span>
@@ -51,7 +53,8 @@
                                 <i class="mdi mdi-delete-forever"></i>
                             </span>
                         </button>
-                        <button v-if="statusData.status !== 200" class="s-btn" @click="sendData" :disabled="isDisableSend">
+                        <button v-if="statusData.status !== 200" class="s-btn" @click="sendData"
+                                :disabled="isDisableSend">
                             <span class="s-icon">
                                 <i class="mdi mdi-account-edit-outline"></i>
                             </span>
@@ -108,7 +111,9 @@
                         class="s-btn s-rounded s-outlined"
                         @click="removePeople(i)"
                     >
-                        <span class="mdi mdi-delete-forever"/>
+                        <span class="s-icon">
+                            <i class="mdi mdi-delete-forever"></i>
+                        </span>
                     </button>
                 </td>
             </tr>
@@ -151,7 +156,7 @@
 
                 data: {
                     maxLength: maxLength(this.actualCount),
-                    empty: (arr) => arr.length > 0 ,
+                    empty: (arr) => arr.length > 0,
                     $each: {
                         email: {
                             email,
