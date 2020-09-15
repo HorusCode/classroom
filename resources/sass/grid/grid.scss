@@ -12,7 +12,7 @@
                          ". c c c"
                          "f f f f";
     grid-template-columns: auto repeat(3, 1fr);
-    grid-template-rows: 5rem repeat(2, 1fr) 5rem;
+    grid-template-rows: 5rem auto 5rem;
     height: inherit;
 }
 

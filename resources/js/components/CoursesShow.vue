@@ -5,7 +5,7 @@
                 <div class="s-field s-field--grouped">
                     <div class="s-control">
                         <button class="s-btn" :class="{'s-btn--warning': groupsEditing}"
-                                @click="groupsEditing = !groupsEditing">
+                                @click="groupsEditing = !groupsEditing; addingGroups = []">
                             {{ groupsEditing ? 'Отмена' : 'Редактировать' }}
                         </button>
                     </div>
