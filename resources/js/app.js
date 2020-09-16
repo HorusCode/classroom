@@ -1,4 +1,6 @@
 require('./bootstrap');
+require('../assets/vendor/MediaManager/js/manager')
+
 
 import Vue from "vue";
 import Vuelidate from "vuelidate";

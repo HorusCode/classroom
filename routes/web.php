@@ -30,3 +30,6 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+
+// MediaManager
+ctf0\MediaManager\MediaRoutes::routes();

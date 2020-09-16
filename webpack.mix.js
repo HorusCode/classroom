@@ -17,3 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
 
 
 mix.version();
+
+// MediaManager
+mix.sass('resources/assets/vendor/MediaManager/sass/manager.scss', 'public/assets/vendor/MediaManager/style.css')
+    .copyDirectory('resources/assets/vendor/MediaManager/dist', 'public/assets/vendor/MediaManager')
