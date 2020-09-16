@@ -34,7 +34,7 @@
                 </tr>
                 </thead>
                 <tbody >
-                <table-useless-row @add-new="addNew" @save="saveData" :data="addingData"/>
+                <table-useless-row @add-new="addNew" @save="saveData" :data="addingData" :send-disabled="$v.addingData.$invalid"/>
                 <tr v-for="(s, i) in filtered" :key="s.id">
                     <td>{{ i + 1 }}</td>
                     <td>
@@ -54,7 +54,7 @@
                 <tr v-for="(data, i) in addingData">
                     <td></td>
                     <td>
-                        <input type="text" class="s-input s-rounded w-1" v-model="data.group">
+                        <input type="text" class="s-input s-rounded w-1" :class="{'s-border--danger': $v.addingData.$each[i].$invalid}" v-model="data.group">
                     </td>
                     <td>
                         <span>{{ data.users_count }}</span>
@@ -67,7 +67,7 @@
                         </button>
                     </td>
                 </tr>
-                <table-useless-row @add-new="addNew" @save="saveData" :data="addingData" />
+                <table-useless-row @add-new="addNew" @save="saveData" :data="addingData" :send-disabled="$v.addingData.$invalid"/>
                 </tbody>
             </table>
             <div class="s-loader-mask" :class="{'s-active': loading}">
@@ -81,7 +81,7 @@
 
     import {search} from '../utils/mixins'
     import TableUselessRow from "./Helpers/TableUselessRow";
-
+    import {required,minLength} from "vuelidate/lib/validators";
 
 
     export default {
@@ -103,6 +103,22 @@
         mounted() {
             this.getData();
         },
+        validations() {
+            return {
+                addingData: {
+                    required,
+                    $each: {
+                        group: {
+                            required,
+                            minLength: minLength(3),
+                            isDuplicate(str) {
+                                return this.addingData.filter(v => v.group === str).length === 1;
+                            },
+                        }
+                    }
+                }
+            }
+        },
         methods: {
             getData: function () {
                 this.openAlert = false;
@@ -114,7 +130,7 @@
                     })
                     .catch(data => {
                         this.openAlert = true;
-                        this.statusData = data.response;
+                        this.statusData = data;
                     }).finally(() => this.loading = false);
             },
             addNew: function () {
@@ -134,7 +150,7 @@
                     this.addingData = [];
                 }).catch(data => {
                     this.openAlert = true;
-                    this.statusData = data.response;
+                    this.statusData = data;
                 }).finally(() => this.loading = false);
             },
             removeData: function (i) {
@@ -146,9 +162,9 @@
                 this.statusData = {};
                 axios.delete(`/groups/${id}`).then(() => {
                     this.data.splice(idx, 1);
-                }).catch(({response}) => {
+                }).catch(data => {
                     this.openAlert = true;
-                    this.statusData = response;
+                    this.statusData = data;
                 }).finally(() => {
                     event.target.classList.remove('s-loading');
                 })

@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
 
         Route::view('/courses/{id}', 'pages/courses/show')->name('courses.show');
         Route::view('/filemanager', 'pages/filemanager/index')->name('filemanager.index');
+        Route::view('/calendar', 'pages/calendar/index')->name('calendar.index');
+        Route::view('/tests', 'pages/tests/index')->name('tests.index');
     });
 });
 

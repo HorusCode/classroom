@@ -25,7 +25,6 @@ VueTouch.registerCustomEvent('hold', {type: 'press', time: 500})
 Vue.use(VueTouch)
 
 // axios
-window.axios = require('axios')
 axios.defaults.headers.common = {
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     'X-Requested-With': 'XMLHttpRequest'
@@ -35,12 +34,7 @@ axios.interceptors.response.use(
     (error) => Promise.reject(error.response)
 )
 
-// Echo
-// import EchoLib from 'laravel-echo'
-// window.Echo = new EchoLib({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });
+
 
 // vue-awesome
 require('./modules/icons')
