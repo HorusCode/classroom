@@ -26,7 +26,8 @@ Route::middleware('auth')->group(function () {
 
         Route::view('/courses', 'pages/courses/index')->name('courses.index');
 
-        Route::view('/courses/{id}', 'pages/courses/show')->name('courses.show')->name('courses.detach');
+        Route::view('/courses/{id}', 'pages/courses/show')->name('courses.show');
+        Route::view('/filemanager', 'pages/filemanager/index')->name('filemanager.index');
     });
 });
 

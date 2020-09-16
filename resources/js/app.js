@@ -1,9 +1,8 @@
 require('./bootstrap');
-require('../assets/vendor/MediaManager/js/manager')
 
 
-import Vue from "vue";
 import Vuelidate from "vuelidate";
+window.Vue = require('vue')
 Vue.use(Vuelidate);
 
 Vue.config.debug = true;
@@ -19,7 +18,7 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-const app = new Vue({
+require('../assets/vendor/MediaManager/js/manager')
+new Vue({
     el: '#app',
 });

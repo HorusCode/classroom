@@ -73,7 +73,7 @@
                 </a>
             </li>
             <li class="s-vertical-list__item">
-                <a type="button" href="{{route('web.courses.index')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'web.courses.index' ? 's-active' : '' }}">
+                <a type="button" href="{{route('web.filemanager.index')}}" class="s-vertical-list__title s-with-icon-left {{ $route === 'web.filemanager.index' ? 's-active' : '' }}">
                     <span class="s-icon s-left">
                          <i class="mdi mdi-file-cloud"></i>
                     </span>
