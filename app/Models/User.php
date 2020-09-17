@@ -37,4 +37,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Group::class, 'students')->withTimestamps();
     }
+
+    public function student() {
+        return $this->hasOne(Student::class);
+    }
 }

@@ -17,6 +17,8 @@ class CreateTestingsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('time', 8)->default('00:00:00');
+            $table->longText('questions')->default('[]');
+
             $table->unsignedBigInteger('creator_id')->index();
 
             $table->foreign('creator_id')->references('id')

@@ -15,6 +15,7 @@ Route::namespace('Api\v1')->group(function () {
         Route::apiResource('/students', 'StudentController');
         Route::apiResource('/groups', 'GroupController');
         Route::apiResource('/courses', 'CourseController');
+        Route::apiResource('/testing', 'TestingController');
 
         /*
          * Search routes.

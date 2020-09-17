@@ -9,11 +9,9 @@ class Group extends Model
     public $fillable = ['group'];
 
 
-
-
-    public function users()
+    public function students()
     {
-        return $this->belongsToMany(User::class, 'students')->withTimestamps();
+        return $this->hasMany(Student::class);
     }
 
     public function courses()
