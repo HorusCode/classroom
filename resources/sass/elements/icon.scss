@@ -9,19 +9,23 @@ $icon-dimensions-large: 3rem !default;
     justify-content: center;
     height: $icon-dimensions;
     width: $icon-dimensions; // Sizes
+    flex-basis: $icon-dimensions * 2;
     &.s-small {
         height: $icon-dimensions-small;
-        width: $icon-dimensions-small
+        width: $icon-dimensions-small;
+        flex-basis: $icon-dimensions-small * 2;
     }
 
     &.s-medium {
         height: $icon-dimensions-medium;
         width: $icon-dimensions-medium;
+        flex-basis: $icon-dimensions-medium * 2;
     }
 
     &.s-large {
         height: $icon-dimensions-large;
         width: $icon-dimensions-large;
+        flex-basis: $icon-dimensions-large * 2;
     }
 
     #{$icon-class} {

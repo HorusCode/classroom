@@ -24,6 +24,13 @@
     text-align: center;
 }
 
+.s-clipped {
+    overflow: hidden!important;
+}
+
+
+
+
 
 // D-flex displayed
 .controls-field {
@@ -49,4 +56,11 @@
         align-items: center;
         justify-content: center;
     }
+}
+
+//Creating test modal
+.answers {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }

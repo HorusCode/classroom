@@ -42,9 +42,9 @@ $card-media-margin: $block-spacing !default;
 
     &__header {
         background-color: $card-header-background-color;
-        align-items: stretch;
-        /*box-shadow: $card-header-shadow;
-        display: flex;*/
+        align-items: center;
+        /*box-shadow: $card-header-shadow;*/
+        display: flex;
     }
 
     &__title {

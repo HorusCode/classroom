@@ -22,6 +22,16 @@
                     <input type="text" class="s-input" placeholder="Поиск..." v-model="searchWord">
                 </div>
             </div>
+            <div class="s-field s-field--grouped">
+                <div class="s-control">
+                    <div class="s-btn-group">
+                        <button class="s-btn s-btn--primary s-outlined">
+                            Создать
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <div class="s-table-wrapper">
             <table class="s-table s-fullwidth">
@@ -74,10 +84,11 @@
                 <div class="s-loader"></div>
             </div>
         </div>
-        <modal v-modal="showModal">
-            <template #default="props">
-                <test-editing></test-editing>
-            </template>
+        <modal v-model="showModal"
+               :destroy-on-hide="false"
+               full-screen
+               has-modal-card>
+            <test-editing></test-editing>
         </modal>
     </section>
 </template>
