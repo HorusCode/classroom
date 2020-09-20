@@ -11,8 +11,8 @@ class Rating extends Model
         return $this->morphTo();
     }
 
-    public function student()
+    public function user()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(User::class);
     }
 }

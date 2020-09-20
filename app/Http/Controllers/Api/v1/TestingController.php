@@ -60,6 +60,8 @@ class TestingController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        $data = auth()->user()->createdTests()->findOrFail($id);
+
+        return $data->destroy($id) ? $this->sendResponse('', 'Tests deleted!') : $this->sendError('Test not found!');
     }
 }

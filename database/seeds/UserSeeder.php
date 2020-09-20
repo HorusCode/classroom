@@ -18,9 +18,9 @@ class UserSeeder extends Seeder
         $student = Role::whereSlug('student')->first();
         $teacher = Role::whereSlug('teacher')->first();
 
-        $createTest = Permission::whereSlug('create-test')->first();
-        $deleteTest = Permission::whereSlug('delete-test')->first();
-        $updateTest = Permission::whereSlug('update-test')->first();
+        $createTest = Permission::whereSlug('create-test')->first()->id;
+        $deleteTest = Permission::whereSlug('delete-test')->first()->id;
+        $updateTest = Permission::whereSlug('update-test')->first()->id;
 
         $data = [
             'students' => [
@@ -61,9 +61,9 @@ class UserSeeder extends Seeder
             ]
         ];
 
-        foreach ($data as $datum) {
+        foreach ($data as $key => $datum) {
             foreach ($datum as $item) {
-                switch (key($datum)) {
+                switch ($key) {
                     case 'students':
                         $user = User::create($item);
                         $user->roles()->attach($student);

@@ -35,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(test, i) in filtered" :key="s.id">
+                <tr v-for="(test, i) in filtered" :key="test.id">
                     <td>{{ test.title }}</td>
                     <td>
                         <span>{{ test.questions.length }}</span>
@@ -47,17 +47,25 @@
                         <span>{{moment.utc(test.updated_at).local().format("HH:mm DD.MM.YY")}}</span>
                     </td>
                     <td>
-                        <button class="s-btn s-btn--info s-outlined s-rounded s-small" @click="updateModalTest(test)">
-                            <span class="s-icon">
-                                <i class="mdi mdi-pen"></i>
-                            </span>
-                        </button>
-                        <button class="s-btn s-btn--danger s-outlined s-rounded s-small"
-                                @click="deleteData(test.id, i, $event)">
-                            <span class="s-icon">
-                                <i class="mdi mdi-delete"></i>
-                            </span>
-                        </button>
+                        <div class="s-field">
+                            <div class="s-btn-group">
+                                <button class="s-btn s-btn--info s-outlined s-rounded s-small"
+                                        @click="updateModalTest(test)">
+                                    <span class="s-icon">
+                                        <i class="mdi mdi-pen"></i>
+                                    </span>
+                                </button>
+                                <button class="s-btn s-btn--danger s-outlined s-rounded s-small"
+                                        @click="deleteData(test.id, i, $event)">
+                                    <span class="s-icon">
+                                        <i class="mdi mdi-delete"></i>
+                                    </span>
+                                </button>
+                            </div>
+
+                        </div>
+
+
                     </td>
                 </tr>
                 </tbody>
@@ -108,13 +116,13 @@
             deleteData(id, idx, event) {
                 this.loading = true;
                 axios.delete(`/testing/${id}`).then(({data}) => {
-                   this.data.splice(idx, 1);
+                    this.data.splice(idx, 1);
                 }).finally(() => this.loading = false);
             },
             loadData() {
                 this.loading = true;
                 axios.get('/testing').then(({data}) => {
-                    this.data = data;
+                    this.data = data.data;
                 }).finally(() => this.loading = false);
             },
         },
