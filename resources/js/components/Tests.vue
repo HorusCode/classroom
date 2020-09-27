@@ -98,11 +98,12 @@
     import {search} from "../utils/mixins";
     import Modal from "./Helpers/Modal";
     import TestEditing from "./Includes/TestEditing";
+    import Filemanager from "./Includes/Filemanager";
 
 
     export default {
         name: "Tests",
-        components: {Modal, TestEditing},
+        components: {Filemanager, Modal, TestEditing},
         mixins: [search],
         data() {
             return {

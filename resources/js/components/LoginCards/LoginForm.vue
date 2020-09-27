@@ -1,13 +1,13 @@
 <template>
     <div class="s-card">
         <div class="s-card__content">
-            <header class="s-card__header">
+            <header class="s-card__header justify-content-center">
                 <h3 class="s-text--center s-mgy-3">
                     <span class="s-text--primary">Login</span> your account
                 </h3>
-                <span v-if="'message' in data" :class="[data.success ? 's-bg--success' : 's-bg--danger']"
-                      class="form-message">{{ data.message }}</span>
             </header>
+            <span v-if="'message' in data" :class="[data.success ? 's-bg--success' : 's-bg--danger']"
+                  class="form-message">{{ data.message }}</span>
             <form @submit.prevent="login">
                 <input type="hidden" name="_token" :value="csrf"/>
                 <fieldset v-bind:disabled="loading">
@@ -89,7 +89,7 @@
                         window.location.href = '/';
                     })
                     .catch(data => {
-                        this.data = data.response.data;
+                        this.data = data.data;
                     })
                     .finally(() => {
                         this.loading = false;

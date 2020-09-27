@@ -13,7 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/saruma.scss', 'public/css')
-    .extract(["lodash", "axios", "vue"]);
+    .extract(["lodash", "axios", "vue", "element-ui", "element-tiptap"]);
 
 
 // MediaManager

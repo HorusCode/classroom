@@ -2,7 +2,7 @@ export default {
     methods: {
         /*                Item                */
         selectFirst(i = 0) {
-            this.$nextTick(() => this.scrollToFile(this.getElementByIndex(i)))
+            this.$nextTick(() => false)
         },
         isSelected(file) {
             return this.selectedFile == file

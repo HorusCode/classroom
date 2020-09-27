@@ -34,3 +34,6 @@ export function toCssWidth(width) {
 export function isCustomElement(vm) {
     return 'shadowRoot' in vm.$root.$options
 }
+
+
+

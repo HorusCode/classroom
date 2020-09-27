@@ -121,7 +121,7 @@
 }
 
 @mixin tab {
-  @media screen and (min-width: $tablet), print {
+  @media screen and (max-width: $tablet), print {
     @content
   }
 }

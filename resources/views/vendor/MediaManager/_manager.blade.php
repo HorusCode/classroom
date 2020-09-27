@@ -101,7 +101,7 @@
     <div class="media-manager"
         :class="[
             {'__stack-reverse': waitingForUpload},
-            {'top-space': !inModal}
+
         ]">
 
         {{-- content ratio bar --}}

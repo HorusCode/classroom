@@ -1,7 +1,8 @@
 <template>
     <div class="s-modal__card">
-        <div class="s-modal__card-header">
+        <div class="s-modal__card-header justify-content-between">
             <h2 class="s-text--title">Создание теста</h2>
+            <div class="s-delete" @click="$parent.close()"></div>
         </div>
         <div class="s-modal__card-body">
             <div class="s-row">
@@ -35,6 +36,7 @@
                             </button>
                         </header>
                         <div class="s-card__content">
+                                <el-tiptap v-model="questions.name" :extensions="extensions" lang="ru"/>
                                 <div class="s-row">
                                     <div class="s-col-desk-3" v-for="(answer, i) in questions.answers" :key="`answer-${i}`">
                                         <div class="s-field s-with-tools align-items-center">
@@ -83,15 +85,60 @@
 </template>
 
 <script>
-    import Button from "../../../assets/vendor/MediaManager/js/components/globalSearch/button";
+    import {
+        // necessary extensions
+        Doc,
+        Text,
+        Paragraph,
+        Heading,
+        Bold,
+        Underline,
+        Italic,
+        Strike,
+        ListItem,
+        BulletList,
+        OrderedList,
+        Fullscreen,
+        FontSize,
+        Iframe,
+        Link,
+        Image,
+        ElementTiptap,
+    } from 'element-tiptap';
+
+    import FilemanagerButton from "../../extensions/FilemanagerButton";
+    import Filemanager from "./Filemanager";
+
     export default {
         name: "TestEditing",
-        components: {Button},
         props: {
             data: Object
         },
+        components: {
+            Filemanager,
+            'el-tiptap': ElementTiptap,
+        },
         data() {
             return {
+                extensions: [
+                    new Doc(),
+                    new Text(),
+                    new Paragraph(),
+                    new Heading({ level: 5 }),
+                    new Bold({ bubble: true }), // render command-button in bubble menu.
+                    new Underline({ bubble: true, menubar: false }), // render command-button in bubble menu but not in menubar.
+                    new Italic(),
+                    new Strike(),
+                    new ListItem(),
+                    new BulletList(),
+                    new OrderedList(),
+                    new Iframe(),
+                    new Fullscreen(),
+                    new FontSize(),
+                    new Image(),
+                    new Link(),
+                    new FilemanagerButton(),
+                ],
                 test: {
                     title: "Название теста",
                     time: "00:15:00",

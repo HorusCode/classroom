@@ -2,8 +2,18 @@ require('./bootstrap');
 
 
 import Vuelidate from "vuelidate";
-window.Vue = require('vue')
+/*import ElementUI from 'element-ui';
+import { ElementTiptapPlugin } from 'element-tiptap';*/
+
+
+
+
+
+window.Vue = require('vue');
+
+
 Vue.use(Vuelidate);
+
 
 Vue.config.debug = true;
 Vue.config.devtools = true;
@@ -11,10 +21,10 @@ Vue.config.devtools = true;
 
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
+Vue.component('Filemanager', require('./components/Includes/Filemanager.vue').default)
 
 //Add mediamanager
-/*require('../assets/vendor/MediaManager/js/manager');*/
+require('../assets/vendor/MediaManager/js/manager');
 
 
 /**
