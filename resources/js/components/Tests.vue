@@ -25,7 +25,7 @@
             <div class="s-field s-field--grouped">
                 <div class="s-control">
                     <div class="s-btn-group">
-                        <button class="s-btn s-btn--primary s-outlined">
+                        <button class="s-btn s-btn--primary s-outlined" @click="(showModal = true), (updatingTest = {})">
                             Создать
                         </button>
                     </div>
@@ -85,10 +85,9 @@
             </div>
         </div>
         <modal v-model="showModal"
-               :destroy-on-hide="false"
                full-screen
                has-modal-card>
-            <test-editing></test-editing>
+            <test-editing :data="updatingTest"></test-editing>
         </modal>
     </section>
 </template>

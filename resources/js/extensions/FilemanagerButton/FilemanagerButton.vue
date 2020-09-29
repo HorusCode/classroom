@@ -45,12 +45,14 @@
             },
             editorContext: {
                 type: Object,
-                default: {}
+                default: {},
+                required: true,
             }
         },
         data() {
           return {
-              images: ''
+              images: '',
+              activeButton: false
           }
         },
         components: {
@@ -66,8 +68,11 @@
                 };
             }
         },
-        created() {
+        mounted() {
           this.listenEvents();
+        },
+        beforeDestroy() {
+            EventHub.removeListenersFrom(['file_selected', 'modal-hide']);
         },
         methods: {
             listenEvents() {
@@ -75,13 +80,17 @@
                     this.images = path;
                 });
                 EventHub.listen('modal-hide', () => {
-                    if(this.images !== '') {
+                    if(this.images !== '' && this.activeButton) {
+                        //Добавляю фотку в редактор
                         this.editorContext.commands.image({src: this.images});
-                        this.images = '';
                     }
+                    this.images = '';
+                    this.activeButton = false;
                 });
             },
             onClick() {
+                // Открытие модального окна менеджера
+                this.activeButton = true;
                 document.getElementsByClassName('__Inmodal-editor')[0].click();
             }
         }

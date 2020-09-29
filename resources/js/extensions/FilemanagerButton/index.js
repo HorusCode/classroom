@@ -1,11 +1,11 @@
 /*
-* Element TipTap open filemanager button
+* Кнока открытия модального окна менеджера
 * */
 
-import {Link} from 'element-tiptap';
+import {Image} from 'element-tiptap';
 import FilemanagerButton from './FilemanagerButton';
 
-export default class Filemanager extends Link {
+export default class Filemanager extends Image {
     menuBtnView(editorContext) {
         return {
             component: FilemanagerButton,

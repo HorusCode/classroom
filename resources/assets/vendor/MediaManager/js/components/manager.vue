@@ -1,5 +1,6 @@
 <style lang="scss" scoped src="../../sass/packages/bulma.scss"></style>
 
+
 <script>
 import debounce from 'lodash/debounce'
 import Vue2Filters from 'vue2-filters'

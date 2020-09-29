@@ -17,6 +17,4 @@
     </div>
 @endsection
 
-@push('styles')
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-@endpush
+

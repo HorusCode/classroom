@@ -86,7 +86,18 @@
 
 .s-radio {
     @extend %checkbox-radio;
-
+    input {
+        border-radius: $radius-rounded;
+        &::after {
+            border: 0;
+            border-radius: inherit;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            top: 5px;
+            left: 5px;
+        }
+    }
     & + .s-radio {
         @include ltr-property("margin", 0.5em, false);
     }
