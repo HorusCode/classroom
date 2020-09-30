@@ -7,12 +7,17 @@
                         Добавить
                     </button>
                 </div>
-
             </div>
-
         </div>
         <hr>
-        <div class="s-row">
+        <div class="s-row" v-if="loading">
+            <div class="s-col-desk-12" style="position: relative">
+                <div class="s-loader-mask s-active">
+                    <div class="s-loader"></div>
+                </div>
+            </div>
+        </div>
+        <div class="s-row" v-else-if="data.length > 0">
             <div class="s-col-desk-3" v-for="(item, i) in data" :key="item.id">
                 <a :href="`/courses/${item.id}`">
                     <div class="s-card">
@@ -44,6 +49,13 @@
                     </div>
                 </a>
 
+            </div>
+        </div>
+        <div class="s-row" v-else>
+            <div class="s-col-desk-12">
+                <div class="d-flex centered-items">
+                    <span class="s-text--title">Нет информации</span>
+                </div>
             </div>
         </div>
         <modal v-model="createDataModal" :can-cancel="['escape', 'x']" :width="320">
@@ -175,11 +187,12 @@
                 })
             },
             getData: function () {
+                this.loading = true;
                 axios.get('/courses').then(({data}) => {
                     this.data = data.data;
                 }).catch(({response}) => {
                     console.log(response);
-                })
+                }).finally(() => this.loading = false)
             },
             editData: function (obj, idx) {
                 this.editDataModal = true;

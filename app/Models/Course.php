@@ -12,4 +12,11 @@ class Course extends Model
     {
         return $this->belongsToMany(Group::class)->withTimestamps();
     }
+
+    public function works()
+    {
+        return $this->hasMany(Work::class);
+    }
+
+
 }

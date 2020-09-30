@@ -14,11 +14,14 @@ $loader-height: $body-line-height !default;
     justify-content: center;
     overflow: hidden;
     z-index: 10;
-    background-color: transparentize($white-bis, 0.5);
+    min-height: 200px;
+    background-color: transparentize($white-bis, 0.3);
     .s-loader {
         height: 3em;
         width: 3em;
         &::after, &::before {
+            height: 3em;
+            width: 3em;
             @include center(3em);
         }
     }

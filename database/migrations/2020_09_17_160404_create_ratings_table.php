@@ -17,10 +17,12 @@ class CreateRatingsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('work_id')->index();
-            $table->string('work_type')->nullable();
+
 
             $table->foreign('user_id')->references('id')
                 ->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('work_id')->references('id')
+                ->on('works')->onUpdate('cascade')->onDelete('cascade');
 
             $table->tinyInteger('rate')->default(2);
             $table->timestamps();

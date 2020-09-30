@@ -26,7 +26,6 @@
         },
         data() {
             return {
-
                 calendarOptions: {
                     initialView: 'listWeek',
                     locale: ruLocale,
@@ -39,7 +38,7 @@
                     headerToolbar: {
                         left: 'prev,next today',
                         center: 'title',
-                        right: 'listYear'
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
                     },
                     events: [
                         {

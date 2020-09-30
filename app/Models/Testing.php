@@ -12,9 +12,8 @@ class Testing extends Model
         'questions' => 'array',
     ];
 
-    public function rates()
-    {
-        return $this->morphMany(Rating::class, 'work');
+    public function works(){
+        return $this->morphMany(Work::class, 'task');
     }
 
     public function creator()

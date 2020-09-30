@@ -34,7 +34,8 @@
                                     <fieldset>
                                         <div class="s-field" v-for="(type, key) in types" :key="key">
                                             <label class="s-radio">
-                                                <input type="radio" :name="`type-${index}`" :value="key" v-model="questions.type" @click="setAnswersToBool(index)">
+                                                <input type="radio" :name="`type-${index}`" :value="key"
+                                                       v-model="questions.type" @click="setAnswersToBool(index)">
                                                 {{ type.label }}
                                             </label>
                                         </div>
@@ -109,7 +110,7 @@
                                 <button class="s-btn s-btn--primary s-outlined s-rounded" @click="addQuestion">Добавить
                                     вопрос
                                 </button>
-                                <button class="s-btn s-btn--success s-rounded">Сохранить</button>
+                                <button class="s-btn s-btn--success s-rounded" @click="saveData">Сохранить</button>
                             </div>
                         </div>
 
@@ -146,6 +147,25 @@
 
     import FilemanagerButton from "../../extensions/FilemanagerButton";
 
+    const extensions = [
+        new Doc(),
+        new Text(),
+        new Paragraph(),
+        new Heading({level: 5}),
+        new Bold({bubble: true}),
+        new Underline({bubble: true, menubar: false}),
+        new Italic(),
+        new Strike(),
+        new ListItem(),
+        new BulletList(),
+        new OrderedList(),
+        new Iframe(),
+        new Fullscreen(),
+        new FontSize(),
+        new Image(),
+        new Link(),
+        new FilemanagerButton(), // Кнопка файлового менеджера
+    ];
     export default {
         name: "TestEditing",
         props: {
@@ -156,25 +176,7 @@
         },
         data() {
             return {
-                extensions: [
-                    new Doc(),
-                    new Text(),
-                    new Paragraph(),
-                    new Heading({level: 5}),
-                    new Bold({bubble: true}),
-                    new Underline({bubble: true, menubar: false}),
-                    new Italic(),
-                    new Strike(),
-                    new ListItem(),
-                    new BulletList(),
-                    new OrderedList(),
-                    new Iframe(),
-                    new Fullscreen(),
-                    new FontSize(),
-                    new Image(),
-                    new Link(),
-                    new FilemanagerButton(), // Кнопка файлового менеджера
-                ],
+                extensions: extensions,
                 types: {
                     multichoice: {
                         button: 'checkbox',
@@ -190,11 +192,11 @@
                     time: "00:15:00",
                     questions: [
                         {
-                            name: "Вопрос",
+                            name: "",
                             type: 'multichoice',
                             answers: [
                                 {
-                                    text: "Answer Text1",
+                                    text: "",
                                     answer: false,
                                 }
                             ],
@@ -227,6 +229,23 @@
                     text: '',
                     answer: false
                 })
+            },
+            saveData: function () {
+               if(this.mode === 'update') {
+                   this.updateData();
+                   return;
+               }
+               this.createData();
+            },
+            updateData: function() {
+              axios.put(`/testing/${this.test.id}`, this.test).then(response => {
+                  console.log(response);
+              })
+            },
+            createData: function() {
+              axios.post('/testing', this.test).then(response => {
+                 console.log(response);
+              });
             },
             deleteAnswer: function (questionIdx, answerInd) {
                 this.test.questions[questionIdx].answers.splice(answerInd, 1);

@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->hasMany(Testing::class, 'creator_id');
     }
 
+    public function calendarEvents() {
+        return $this->morphMany(CalendarEvent::class, 'parent');
+    }
+
 
 
 }
