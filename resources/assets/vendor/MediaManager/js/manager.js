@@ -9,14 +9,7 @@ window.EventHub = require('vuemit')
 window.keycode = require('keycode')
 window.Fuse = require('fuse.js')
 
-// vue-tippy
-Vue.use(require('vue-tippy'), {
-    popperOptions: {
-        modifiers: {
-            hide: {enabled: false}
-        }
-    }
-})
+
 
 // v-touch
 let VueTouch = require('vue-touch')
@@ -24,15 +17,7 @@ VueTouch.registerCustomEvent('dbltap', {type: 'tap', taps: 2})
 VueTouch.registerCustomEvent('hold', {type: 'press', time: 500})
 Vue.use(VueTouch)
 
-// axios
-axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    'X-Requested-With': 'XMLHttpRequest'
-}
-axios.interceptors.response.use(
-    (response) => response,
-    (error) => Promise.reject(error.response)
-)
+
 
 
 

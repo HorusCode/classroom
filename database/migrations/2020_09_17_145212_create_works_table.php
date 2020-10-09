@@ -19,6 +19,10 @@ class CreateWorksTable extends Migration
             $table->string('description');
             $table->unsignedBigInteger('task_id')->index()->nullable();
             $table->string('task_type')->nullable();
+            $table->unsignedBigInteger('course_id')->index()->nullable();
+            $table->foreign('course_id')->references('id')->on('courses')
+                ->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamp('complete_in')->nullable();
             $table->timestamps();
         });
     }

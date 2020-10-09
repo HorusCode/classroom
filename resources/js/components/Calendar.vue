@@ -24,6 +24,12 @@
         components: {
             FullCalendar,
         },
+        props: {
+            events: {
+                type: Array,
+                default: []
+            }
+        },
         data() {
             return {
                 calendarOptions: {
@@ -40,21 +46,7 @@
                         center: 'title',
                         right: 'dayGridMonth,timeGridWeek,timeGridDay,listYear'
                     },
-                    events: [
-                        {
-                            title: 'Meeting',
-                            start: '2020-08-12T14:30:00',
-                            extendedProps: {
-                                status: 'done'
-                            }
-                        },
-                        {
-                            title: 'Birthday Party',
-                            start: '2020-08-13T07:00:00',
-                            backgroundColor: 'green',
-                            borderColor: 'green'
-                        }
-                    ]
+                    events: this.events
                 }
             }
         }

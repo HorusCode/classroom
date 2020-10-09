@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Work extends Model
 {
 
+    protected $fillable = ['title', 'description', 'complete_in'];
+
     public function task(){
         return $this->morphTo();
     }

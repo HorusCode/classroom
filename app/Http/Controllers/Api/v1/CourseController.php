@@ -48,11 +48,15 @@ class CourseController extends BaseController
      * Display the specified resource.
      *
      * @param Course $course
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Course $course)
+    public function show(Course $course, Request $request)
     {
-        return $this->sendResponse($course->load('groups'));
+        if($request->with) {
+            $course->load(explode(',',$request->with));
+        }
+        return $this->sendResponse($course);
     }
 
     /**

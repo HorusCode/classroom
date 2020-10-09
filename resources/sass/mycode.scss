@@ -64,3 +64,18 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+//Div boxes
+.box-title {
+    display: block;
+    font-size: $size-5;
+    padding: 0 1rem;
+    border: 2px solid $border;
+    border-right: 0;
+    border-bottom: 0;
+    margin-bottom: 0.75rem;
+}
+
+
+//Element UI
+

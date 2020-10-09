@@ -1,6 +1,6 @@
 <template>
     <tr class="s-table__field">
-        <td colspan="4">
+        <td colspan="100%">
             <div class="row-wrapper s-center">
                 <div class="s-btn-group">
                     <button class="s-btn s-btn--primary s-light" @click="$emit('add-new')">Добавить</button>
@@ -19,6 +19,7 @@
                 type: Array,
                 default: []
             },
+
             sendDisabled: {
                 type: Boolean,
                 default: false

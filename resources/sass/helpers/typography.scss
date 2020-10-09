@@ -77,3 +77,8 @@ $alignments: ('center', 'justify' 'left', 'right');
     font-weight: $weight-semibold;
     font-size: $size-large;
 }
+
+.s-text--dashed {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+}
