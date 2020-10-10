@@ -69,4 +69,9 @@ class TestingController extends BaseController
 
         return $data->destroy($id) ? $this->sendResponse('', 'Tests deleted!') : $this->sendError('Test not found!');
     }
+
+    public function search(Request $request) {
+        $data = Testing::where('title', 'LIKE', "%{$request->test}%")->get();
+        return $this->sendResponse($data->makeHidden(['questions']));
+    }
 }

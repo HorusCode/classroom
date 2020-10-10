@@ -3013,8 +3013,7 @@ a.plyr__control::before {
 
 .plyr__preview-scrubbing {
   bottom: 0;
-  -webkit-filter: blur(1px);
-          filter: blur(1px);
+  filter: blur(1px);
   height: 100%;
   left: 0;
   margin: auto;
@@ -3183,8 +3182,7 @@ a.plyr__control::before {
 
 #new-upload .save_link {
   bottom: 0;
-  -webkit-filter: drop-shadow(0 0 0.1rem rgba(29, 36, 40, 0.3));
-          filter: drop-shadow(0 0 0.1rem rgba(29, 36, 40, 0.3));
+  filter: drop-shadow(0 0 0.1rem rgba(29, 36, 40, 0.3));
   right: 0.5rem;
 }
 
@@ -3245,8 +3243,7 @@ a.plyr__control::before {
 
 #uploadPreview.show ~ .__stack-files,
 #uploadPreview.show ~ .__stack-sidebar {
-  -webkit-filter: blur(5px);
-          filter: blur(5px);
+  filter: blur(5px);
   opacity: 0.25;
 }
 
@@ -3266,8 +3263,7 @@ a.plyr__control::before {
 }
 
 #uploadPreview .btn-animate button:hover {
-  -webkit-filter: drop-shadow(0 4px 6px rgba(29, 36, 40, 0.1));
-          filter: drop-shadow(0 4px 6px rgba(29, 36, 40, 0.1));
+  filter: drop-shadow(0 4px 6px rgba(29, 36, 40, 0.1));
   opacity: 1;
   transform: translateY(-0.2rem);
 }
@@ -3516,8 +3512,7 @@ a.plyr__control::before {
 
 .__stack-container.dz-drag-hover .__stack-files,
 .__stack-container.dz-drag-hover .__stack-sidebar {
-  -webkit-filter: blur(5px);
-          filter: blur(5px);
+  filter: blur(5px);
   opacity: 0.25;
 }
 
@@ -3779,8 +3774,7 @@ a.plyr__control::before {
 }
 
 .__stack-sidebar .__sidebar-preview .__sidebar-none-selected svg {
-  -webkit-filter: drop-shadow(0.3rem 0.3rem 0 #c0cad1);
-          filter: drop-shadow(0.3rem 0.3rem 0 #c0cad1);
+  filter: drop-shadow(0.3rem 0.3rem 0 #c0cad1);
   margin: 0;
 }
 

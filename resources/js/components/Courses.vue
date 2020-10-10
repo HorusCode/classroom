@@ -104,7 +104,6 @@
                     </div>
                 </footer>
             </div>
-
         </modal>
         <modal v-model="editDataModal" :can-cancel="['escape', 'x']" :width="320">
             <div class="s-modal__card" style="width: auto">

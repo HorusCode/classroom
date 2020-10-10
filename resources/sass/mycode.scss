@@ -78,4 +78,6 @@
 
 
 //Element UI
-
+.el-date-table td.current:not(.disabled) span {
+    text-align: center;
+}

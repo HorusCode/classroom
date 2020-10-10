@@ -10,26 +10,26 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@fullcalendar/list": "^5.3.1",
-        "axios": "^0.19",
-        "cross-env": "^7.0.2",
-        "element-ui": "^2.13.2",
-        "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.19",
-        "moment": "^2.28.0",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
-        "sass-loader": "^8.0.0",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10",
-        "vuelidate": "^0.7.5"
-    },
-    "dependencies": {
         "@fullcalendar/core": "^5.3.1",
         "@fullcalendar/daygrid": "^5.3.2",
         "@fullcalendar/interaction": "^5.3.1",
+        "@fullcalendar/list": "^5.3.1",
         "@fullcalendar/timegrid": "^5.3.1",
         "@fullcalendar/vue": "^5.3.1",
+        "axios": "^0.19",
+        "cross-env": "^7.0.2",
+        "element-ui": "^2.13.2",
+        "laravel-mix": "^5.0.6",
+        "lodash": "^4.17.20",
+        "moment": "^2.28.0",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.27.0",
+        "sass-loader": "^8.0.0",
+        "vue": "^2.6.12",
+        "vue-template-compiler": "^2.6.12",
+        "vuelidate": "^0.7.5"
+    },
+    "dependencies": {
         "annyang": "^2.6.1",
         "cropperjs": "^1.5.9",
         "dropzone": "^5.7.2",
@@ -51,6 +51,6 @@
         "vue-tippy": "^2.1.3",
         "vue-touch": "^2.0.0-beta.4",
         "vue2-filters": "^0.11.0",
-        "worker-loader": "^3.0.2"
+        "worker-loader": "^3.0.4"
     }
 }

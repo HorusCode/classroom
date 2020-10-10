@@ -7,10 +7,10 @@ import langRu from 'element-ui/lib/locale/lang/ru-RU'
 locale.use(langRu)
 
 
-
+window.moment = require('moment');
 window.Vue = require('vue');
 
-
+moment.locale('ru');
 Vue.use(Vuelidate);
 Vue.config.debug = true;
 Vue.config.devtools = true;

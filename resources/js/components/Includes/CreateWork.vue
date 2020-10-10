@@ -1,56 +1,85 @@
 <template>
-    <tr v-for="(datum, idx) in addingWorks" :key="'add_task-'+idx">
-        <td>
-            <input
-                v-model="datum.title"
-                type="text"
-                class="s-input"
-                placeholder="Название"
-            />
-        </td>
-        <td>
-            <autocomplete
-                :data="works"
-                :loading="loading"
-                placeholder="Тест..."
-                class="w-1"
-                field="title"
-                :type="$v.addingWorks.$each[idx].task_id.$invalid ? 's-border--danger' : ''"
-                @input="searchDebounce('works')"
-                @select="option => {addingWorks[idx] = option; $v.addingWorks.$each[idx].task_id.$model = option.id }"
-            ></autocomplete>
-        </td>
-        <td>
-            <textarea class="s-textarea" v-model="datum.description" placeholder="Описание..."></textarea>
-        </td>
-        <td>
-            {{ datum.created_at  }}
-        </td>
-        <td>
-            <el-date-picker
-                v-model="datum.complete_in"
-                type="datetime"
-                placeholder="Дата окончания..."
-                :picker-options="pickerOptions">
-            </el-date-picker>
-        </td>
-        <td>
-            <button
-                type="button"
-                class="s-btn s-rounded s-outlined s-small"
-                @click="addingWorks.splice(idx, 1)"
-            >
-                                <span class="s-icon">
-                                    <i class="mdi mdi-delete-forever"></i>
-                                </span>
-            </button>
-        </td>
-    </tr>
+    <div class="s-modal__card" style="width: auto">
+        <header class="s-modal__card-header">
+            <div class="s-modal__card-title">
+                <span class="s-size--4">
+                    Добавление нового задания
+                </span>
+            </div>
+        </header>
+        <section class="s-modal__card-body">
+            <div class="s-field">
+                <label class="s-label">Заголовок задания</label>
+                <div class="s-control">
+                    <input type="text" v-model="workTitle" class="s-input"
+                           :class="{'s-border--danger': $v.workTitle.$invalid}" placeholder="Заголовок задания...">
+                </div>
+                <span v-if="!$v.workTitle.minLength" class="s-field--message s-text--danger">5 символов минимум</span>
+                <span v-if="!$v.workTitle.required" class="s-field--message s-text--danger">Это поле обязательно</span>
+            </div>
+            <div class="s-field">
+                <label class="s-label">Описание</label>
+                <div class="s-control">
+                    <textarea v-model="workDescription" class="s-textarea"
+                              :class="{'s-border--danger': $v.workDescription.$invalid}"
+                              placeholder="Описание..."></textarea>
+                </div>
+                <span v-if="!$v.workDescription.minLength"
+                      class="s-field--message s-text--danger">10 символов минимум</span>
+                <span v-if="!$v.workDescription.required"
+                      class="s-field--message s-text--danger">Это поле обязательно</span>
+            </div>
+            <div class="s-field">
+                <label class="s-label">Тест</label>
+                <div class="s-control">
+                    <autocomplete
+                        :data="tests"
+                        :loading="loading"
+                        placeholder="Тест..."
+                        class="w-1"
+                        field="title"
+                        :type="$v.selectedTest.$invalid ? 's-border--danger' : ''"
+                        @input="searchDebounce"
+                        @select="option => selectedTest = option"
+                    ></autocomplete>
+                </div>
+                <span v-if="!$v.selectedTest.required" class="s-field--message s-text--danger">Выберите тест</span>
+            </div>
+            <div class="s-field">
+                <label class="s-label">Дата завершения задания</label>
+                <div class="s-control">
+                    <span>{{moment().format('DD.MM.YYYY HH:mm')}}</span>
+                    <el-date-picker
+                        v-model="workCompleteIn"
+                        type="datetime"
+                        placeholder="Дата завершения..."
+                        format="dd.MM.yyyy HH:mm"
+                        :class="{'s-border--danger': $v.workDescription.$invalid}"
+                        :picker-options="pickerOptions">
+                    </el-date-picker>
+                </div>
+                <span v-if="!$v.workCompleteIn.minValue"
+                      class="s-field--message s-text--danger">Минимальное время: {{ moment().add(2, 'h').add(-1, 'm').format('DD.MM.YYYY HH:mm') }}</span>
+                <span v-if="!$v.workCompleteIn.required"
+                      class="s-field--message s-text--danger">Это поле обязательно</span>
+            </div>
+
+        </section>
+        <footer class="s-modal__card-footer">
+            <div class="s-field">
+                <div class="s-control">
+                    <button class="s-btn s-rounded s-btn--primary w-1"
+                            @click="sendData" :disabled="$v.$invalid">Создать
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </div>
 </template>
 
 <script>
-    import unionBy from "lodash/unionBy";
-    import {maxLength, required} from "vuelidate/lib/validators";
+    import debounce from "lodash/debounce";
+    import {required, minLength} from 'vuelidate/lib/validators'
 
     let pickerOptions = {
         shortcuts: [
@@ -59,7 +88,7 @@
                 onClick(picker) {
                     const end = new Date();
                     end.setTime(end.getTime() + 3600 * 1000 * 24 * 2);
-                    picker.$emit('pick',  end);
+                    picker.$emit('pick', end);
                 }
             },
             {
@@ -75,7 +104,7 @@
                 onClick(picker) {
                     const end = new Date();
                     end.setTime(end.getTime() + 3600 * 1000 * 24 * 14);
-                    picker.$emit('pick',  end);
+                    picker.$emit('pick', end);
                 }
             },
             {
@@ -90,50 +119,67 @@
             return time.getTime() < Date.now() - 3600 * 1000 * 24;
         }
     };
+
     export default {
         name: "CreateWork",
+        props: ['courseId'],
         data() {
             return {
                 pickerOptions: pickerOptions,
-                addingWorks: [],
+                workTitle: '',
+                workDescription: '',
+                workCompleteIn: '',
+                selectedTest: null,
+                tests: [],
+                loading: false,
+                moment: moment
             }
         },
-        validations() {
-            return {
-                addingWorks: {
-                    maxLength: maxLength(10),
-                    required,
-                    $each: {
-                        task_id: {
-                            isDuplicate(id) {
-                                return this.data.works.filter(v => v.task_id === id).length === 0 && this.addingWorks.filter(v => v.task_id === id).length === 1;
-                            },
-                            required
-                        },
-                    },
-                },
-            };
+        validations: {
+            workCompleteIn: {
+                required,
+                minValue: value => {
+                    const date = new Date();
+                    date.setTime(date.getTime() + 3600 * 1000 * 2);
+                    return value > date;
+                }
+            },
+            workDescription: {
+                required,
+                minLength: minLength(10)
+            },
+            workTitle: {
+                required,
+                minLength: minLength(5)
+            },
+            selectedTest: {
+                required
+            }
+
         },
         methods: {
-            addNewTask: function () {
-                this.addingWorks.push({
-                    complete_in: '',
-                    created_at: new Date(),
-                    description: '',
-                    task_id: null,
-                    title: ''
+            sendData: function () {
+                axios.post(`courses/${this.courseId}/works`, {
+                    title: this.workTitle,
+                    description: this.workDescription,
+                    test: this.selectedTest.id,
+                    complete_in: this.workCompleteIn,
+                }).then(data => {
+                    console.log(data);
                 })
             },
-
-            attachWorks: function () {
-                axios.post(`/courses/${this.dataId}/attach`, {
-                    works: this.addingWorks.map(obj => obj.id)
-                }).then(({data}) => {
-                    this.data.groups = unionBy(this.data.groups, this.addingGroups, 'id');
-                    this.addingGroups = [];
-                    // TODO: Create open status message
-                }).finally(() => {
-                    this.groupsEditing = false;
+            searchDebounce: debounce(function (value) {
+                this.search(value);
+            }, 800),
+            search: function (value) {
+                this.loading = true;
+                axios.get(`/search/tests`, {
+                    params: {
+                        test: value
+                    }
+                }).then(response => {
+                    this.tests = response.data.data;
+                    this.loading = false;
                 });
             },
         }

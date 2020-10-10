@@ -133,7 +133,7 @@
                 </div>
             </div>
             <modal v-model="createWorkModal">
-                <create-work/>
+                <create-work :course-id="dataId"/>
             </modal>
         </div>
         <hr>
@@ -270,6 +270,4 @@
     }
 </script>
 
-<style scoped>
 
-</style>
