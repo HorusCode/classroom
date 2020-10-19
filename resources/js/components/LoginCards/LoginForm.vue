@@ -1,14 +1,15 @@
 <template>
     <div class="s-card">
+        <header class="s-card__title s-text--center">
+            <h1>
+                <span class="s-text--primary">Login</span> your account
+            </h1>
+        </header>
         <div class="s-card__content">
-            <header class="s-card__header justify-content-center">
-                <h3 class="s-text--center s-mgy-3">
-                    <span class="s-text--primary">Login</span> your account
-                </h3>
-            </header>
+
             <span v-if="'message' in data" :class="[data.success ? 's-bg--success' : 's-bg--danger']"
                   class="form-message">{{ data.message }}</span>
-            <form @submit.prevent="login">
+            <form @submit.prevent="login"  id="loginForm">
                 <input type="hidden" name="_token" :value="csrf"/>
                 <fieldset v-bind:disabled="loading">
                     <div class="s-field">
@@ -36,24 +37,28 @@
                         </div>
                         <span v-if="has(data, 'errors.password')" class="s-field--message s-text--danger">{{ data.errors.password[0] }}</span>
                     </div>
-                    <div class="d-flex justify-content-between s-mgb-3">
+
+                </fieldset>
+            </form>
+
+        </div>
+        <footer class="s-card__footer flex-col">
+            <div class="d-flex justify-content-between s-mgb-3">
                         <span class="s-label-link" @click="$emit('showform', 'CodeForm')">
                             Is this your first time?
                         </span>
-                        <span class="s-label-link" @click="$emit('showform', 'RepairForm')">
+                <span class="s-label-link" @click="$emit('showform', 'RepairForm')">
                             Forget password?
                         </span>
-                    </div>
-                    <div class="s-field">
-                        <div class="s-control">
-                            <button type="submit" class="s-btn s-rounded s-btn--primary w-1 mg-auto-x"
-                                    :class="{'s-loading': loading}">Login
-                            </button>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
+            </div>
+            <div class="s-field">
+                <div class="s-control">
+                    <button type="submit" form="loginForm" class="s-btn s-rounded s-btn--primary w-1 mg-auto-x"
+                            :class="{'s-loading': loading}" :disabled="loading">Login
+                    </button>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>
 

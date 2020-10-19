@@ -50,7 +50,7 @@
                                 class="w-1"
                                 field="group"
                                 :type="datum.id.$invalid ? 's-border--danger' : ''"
-                                @input="searchDebounce('groups')"
+                                @input="searchDebounce"
                                 @select="option => {addingGroups[idx] = option; datum.id.$model = option.id }"
                             ></autocomplete>
                         </td>
@@ -103,27 +103,39 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(task, i) in data.works" :key="task.id">
+                    <tr v-for="(work, i) in data.works" :key="work.id">
                         <td>{{ i + 1 }}</td>
                         <td>
-                            <span class="s-text--dashed" :title="task.description" v-tippy>{{ task.title }}</span>
+                            <span class="s-text--dashed" :title="work.description" v-tippy>{{ work.title }}</span>
                         </td>
                         <td>
                             <span>Тестирование</span>
                         </td>
                         <td>
-                            <span>{{ task.created_at }}</span>
+                            <span>{{ moment(work.updated_at).format('DD.MM.YYYY HH:mm') }}</span>
                         </td>
                         <td>
-                            <span>{{ task.complete_in }}</span>
+                            <span>{{ moment(work.complete_in).format('DD.MM.YYYY HH:mm')  }}</span>
                         </td>
                         <td v-if="worksEditing">
-                            <button class="s-btn s-btn--danger s-outlined s-rounded s-small"
-                                    @click="deleteTask(task.id, i, $event)">
+
+                            <div class="s-field">
+                                <div class="s-btn-group">
+                                    <button class="s-btn s-btn--info s-outlined s-rounded s-small"
+                                            @click="updateModal(work)">
+                                        <span class="s-icon">
+                                            <i class="mdi mdi-pen"></i>
+                                        </span>
+                                    </button>
+                                    <button class="s-btn s-btn--danger s-outlined s-rounded s-small"
+                                            @click="deleteWork(work.id, i, $event)">
                                         <span class="s-icon">
                                             <i class="mdi mdi-delete"></i>
                                         </span>
-                            </button>
+                                    </button>
+                                </div>
+
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -132,8 +144,8 @@
                     <div class="s-loader"></div>
                 </div>
             </div>
-            <modal v-model="createWorkModal">
-                <create-work :course-id="dataId"/>
+            <modal v-model="createWorkModal" @close="updatingData = null">
+                <create-work :course-id="dataId" :updating-data="updatingData"/>
             </modal>
         </div>
         <hr>
@@ -173,7 +185,9 @@
                 worksEditing: false,
                 addingGroups: [],
                 groups: [],
-                createWorkModal: false
+                updatingData: null,
+                createWorkModal: false,
+                moment: moment
             }
         },
         mounted() {
@@ -197,9 +211,9 @@
                     maxLength: maxLength(10),
                     required,
                     $each: {
-                        task_id: {
+                        work_id: {
                             isDuplicate(id) {
-                                return this.data.works.filter(v => v.task_id === id).length === 0 && this.addingWorks.filter(v => v.task_id === id).length === 1;
+                                return this.data.works.filter(v => v.work_id === id).length === 0 && this.addingWorks.filter(v => v.work_id === id).length === 1;
                             },
                             required
                         },
@@ -214,7 +228,10 @@
                     this.data = data.data;
                 }).finally(() => this.loading = false);
             },
-
+            updateModal: function (data) {
+                this.updatingData = data;
+                this.createWorkModal = true;
+            },
             searchDebounce: debounce(function (value) {
                 this.search(value);
             }, 800),
@@ -256,9 +273,9 @@
                 });
             },
 
-            deleteTask: function (id, idx, event) {
+            deleteWork: function (id, idx, event) {
                 event.target.classList.add('s-loading');
-                axios.post(`/courses/${this.data.id}/detach`, {
+                axios.post(`/works/${id}`, {
                     works: [id]
                 }).then(() => {
                     this.data.works.splice(idx, 1);

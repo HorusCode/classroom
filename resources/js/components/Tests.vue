@@ -51,10 +51,10 @@
                         <span>{{ test.questions.length }}</span>
                     </td>
                     <td>
-                        <span>{{moment.utc(test.created_at).local().format("HH:mm DD.MM.YY")}}</span>
+                        <span>{{moment.utc(test.created_at).local().format("DD.MM.YYYY HH:mm")}}</span>
                     </td>
                     <td>
-                        <span>{{moment.utc(test.updated_at).local().format("HH:mm DD.MM.YY")}}</span>
+                        <span>{{moment.utc(test.updated_at).local().format("DD.MM.YYYY HH:mm")}}</span>
                     </td>
                     <td>
                         <div class="s-field">
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-    import moment from "moment";
+
     import {search} from "../utils/mixins";
     import Modal from "./Helpers/Modal";
     import TestEditing from "./Includes/TestEditing";

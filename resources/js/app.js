@@ -31,7 +31,7 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 Vue.component('Filemanager', require('./components/Includes/Filemanager.vue').default)
 
 //Add mediamanager
-/*require('../assets/vendor/MediaManager/js/manager');*/
+require('../assets/vendor/MediaManager/js/manager');
 
 
 
@@ -40,7 +40,8 @@ Vue.component('Filemanager', require('./components/Includes/Filemanager.vue').de
 // axios
 axios.defaults.headers.common = {
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept':'application/json',
 }
 axios.interceptors.response.use(
     (response) => response,

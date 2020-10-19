@@ -71,7 +71,7 @@ $card-media-margin: $block-spacing !default;
         border-top: $card-footer-border-top;
         align-items: stretch;
         display: flex;
-
+        padding: $card-content-padding;
         .s-card-footer__item {
             align-items: center;
             display: flex;

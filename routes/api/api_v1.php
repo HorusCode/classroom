@@ -16,6 +16,7 @@ Route::namespace('Api\v1')->group(function () {
         Route::apiResource('/groups', 'GroupController');
         Route::apiResource('/courses', 'CourseController');
         Route::apiResource('/testing', 'TestingController');
+        Route::apiResource('/works', 'TestingController');
 
         /*
          * Search routes.
@@ -31,6 +32,6 @@ Route::namespace('Api\v1')->group(function () {
         Route::post('courses/{course}/detach', 'CourseController@detachGroups');
         Route::post('courses/{course}/attach', 'CourseController@attachGroups');
 
-        Route::post('courses/{course}/works', 'WorkController@store');
+        Route::post('courses/{course}/works', 'WorkController@storeAttach');
     });
 });

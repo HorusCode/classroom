@@ -12,6 +12,7 @@ class LoginController extends BaseController
 {
     use AuthenticatesUsers;
 
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -50,7 +51,6 @@ class LoginController extends BaseController
     {
 
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
-
         $this->clearLoginAttempts($request);
 
         return $request->wantsJson()

@@ -24,6 +24,10 @@
 </script>
 
 <style scoped>
+    .login-section {
+        align-self: center;
+    }
+
     .slide-enter-active, .slide-leave-active{
         transition: transform .5s ease-out;
     }

@@ -47,8 +47,8 @@
             </div>
             <div class="s-field">
                 <label class="s-label">Дата завершения задания</label>
+                <span><strong>Время создания:</strong> {{ workCreatedAt }}</span>
                 <div class="s-control">
-                    <span>{{moment().format('DD.MM.YYYY HH:mm')}}</span>
                     <el-date-picker
                         v-model="workCompleteIn"
                         type="datetime"
@@ -122,13 +122,20 @@
 
     export default {
         name: "CreateWork",
-        props: ['courseId'],
+        props: {
+            courseId: [Number, String],
+            updatingData: {
+                type: Object,
+                default: null
+            }
+        },
         data() {
             return {
                 pickerOptions: pickerOptions,
                 workTitle: '',
                 workDescription: '',
                 workCompleteIn: '',
+                workCreatedAt: moment().format('DD.MM.YYYY HH:mm'),
                 selectedTest: null,
                 tests: [],
                 loading: false,
@@ -157,14 +164,36 @@
             }
 
         },
+        mounted() {
+            if (this.updatingData !== null) {
+                this.workTitle = this.updatingData.title;
+                this.workDescription = this.updatingData.description;
+                this.workCompleteIn = this.updatingData.complete_in;
+                this.workTitle = this.updatingData.title;
+                this.workCreatedAt = this.updatingData.updated_at;
+            }
+        },
         methods: {
             sendData: function () {
-                axios.post(`courses/${this.courseId}/works`, {
+                let params = null;
+                if (this.updatingData) {
+                    params = {
+                        method: 'put',
+                        url: `courses/${this.courseId}/works/${this.updatingData.id}`,
+                    };
+                } else {
+                    params = {
+                        method: 'post',
+                        url: `courses/${this.courseId}/works`,
+                    };
+                }
+                params.data = {
                     title: this.workTitle,
                     description: this.workDescription,
                     test: this.selectedTest.id,
                     complete_in: this.workCompleteIn,
-                }).then(data => {
+                };
+                axios(params).then(data => {
                     console.log(data);
                 })
             },
