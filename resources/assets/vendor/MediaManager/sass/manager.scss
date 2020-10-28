@@ -428,7 +428,7 @@
 .__stack-container {
     background-color: $white;
     display: flex;
-    min-height: 85vh;
+    min-height: 60vh;
     overflow: hidden;
     position: relative;
     transition: all $anim-time $anim-ease;
@@ -961,6 +961,11 @@
 
 /* manager in modal */
 .modal-manager__Inmodal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     > .modal-content {
         width: 85%;
     }

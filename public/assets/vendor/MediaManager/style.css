@@ -1452,7 +1452,6 @@ a[target=_blank] {
 
 .modal-content {
   width: 100%;
-  height: 100%;
   max-height: unset;
   margin: 0;
 }
@@ -3495,7 +3494,7 @@ a.plyr__control::before {
 .__stack-container {
   background-color: white;
   display: flex;
-  min-height: 85vh;
+  min-height: 60vh;
   overflow: hidden;
   position: relative;
   transition: all 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
@@ -4026,6 +4025,14 @@ a.plyr__control::before {
 /*                Options                */
 
 /* manager in modal */
+
+.modal-manager__Inmodal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
 .modal-manager__Inmodal > .modal-content {
   width: 85%;

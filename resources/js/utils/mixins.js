@@ -9,6 +9,14 @@ let fullName = {
     }
 };
 
+let localtime = {
+    methods: {
+        getTime: function (time) {
+            return moment.utc(time).local().format("DD.MM.YYYY HH:mm");
+        }
+    }
+}
+
 let search = {
     methods: {
         inArr: function (val, arr) {
@@ -35,4 +43,4 @@ let search = {
         }
     }
 };
-export { search,fullName };
+export { search,fullName, localtime };

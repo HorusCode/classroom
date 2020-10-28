@@ -51,10 +51,10 @@
                         <span>{{ test.questions.length }}</span>
                     </td>
                     <td>
-                        <span>{{moment.utc(test.created_at).local().format("DD.MM.YYYY HH:mm")}}</span>
+                        <span>{{ getTime(test.created_at) }}</span>
                     </td>
                     <td>
-                        <span>{{moment.utc(test.updated_at).local().format("DD.MM.YYYY HH:mm")}}</span>
+                        <span>{{ getTime(test.updated_at) }}</span>
                     </td>
                     <td>
                         <div class="s-field">
@@ -86,6 +86,7 @@
         </div>
         <modal v-model="showModal"
                full-screen
+               :can-cancel="['x']"
                has-modal-card>
             <test-editing :data="updatingTest"></test-editing>
         </modal>
@@ -94,7 +95,7 @@
 
 <script>
 
-    import {search} from "../utils/mixins";
+    import {search, localtime} from "../utils/mixins";
     import Modal from "./Helpers/Modal";
     import TestEditing from "./Includes/TestEditing";
     import Filemanager from "./Includes/Filemanager";
@@ -102,7 +103,7 @@
     export default {
         name: "Tests",
         components: {Filemanager, Modal, TestEditing},
-        mixins: [search],
+        mixins: [search, localtime],
         data() {
             return {
                 showModal: false,

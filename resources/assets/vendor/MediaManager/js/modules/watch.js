@@ -11,8 +11,8 @@ export default {
 
                 if (this.inModal && !this.isBulkSelecting()) {
                     this.selectedFileIs('folder')
-                        ? EventHub.fire('folder_selected', val.storage_path)
-                        : EventHub.fire('file_selected', val.path)
+                        ? EventHub.fire('folder_selected', val) //Return folder object
+                        : EventHub.fire('file_selected', val) //Return file object
                 }
 
                 return this.updateLs({'selectedFileName': val.name})

@@ -45,6 +45,7 @@ export default {
         },
         swipGesture(e, file, i) {
             EventHub.fire('stopHammerPropagate')
+
             this.setSelected(file, i)
 
             let target = e.target
@@ -146,6 +147,7 @@ export default {
             // operations
             if (type == 'hold') {
                 this.setSelected(file, i)
+
                 this.imageEditor()
 
                 // anything but images, toggle lock

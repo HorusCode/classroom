@@ -1,14 +1,16 @@
 export default {
     methods: {
         /*                Item                */
-        selectFirst(i = 0) {
-            this.$nextTick(() => false)
-        },
+        selectFirst() {},
         isSelected(file) {
             return this.selectedFile == file
         },
         setSelected(file, index, e = null) {
-            if (!this.isBulkSelecting() && this.isSelected(file)) return
+            if (!this.isBulkSelecting() && this.isSelected(file)) {
+                this.selectedFile = null;
+                this.currentFileIndex = null;
+                return;
+            }
 
             // EventHub.fire('stopHammerPropagate')
 
